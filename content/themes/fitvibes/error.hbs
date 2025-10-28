@@ -1,0 +1,49 @@
+{{!< default}}
+<section class="my-12 px-8">
+
+    <div class="max-w-8xl mx-auto">
+
+        <div class="py-16 text-center my-8">
+
+            <h1 class="font-headline text-black text-xl md:text-2xl lg:text-8xl dark:text-white">{{statusCode}}</h1>
+            <p class="text-xs my-6">{{message}}</p>
+            <p class="font-medium text-lg">Diese Seite hat sich eine kleine Auszeit gegönnt.</p>
+            <p class="mt-5">Schau dir stattdessen unsere neuesten Beiträge an.<br />Vielleicht wartet dort genau die Inspiration, die du heute brauchst</p>
+
+            <div class="mt-12">
+                {{> "button" variant="danger" text="Zur Startseite" href=@site.url }}
+            </div>
+
+            {{#if errorDetails}}
+                <div class="gh-error-stack">
+                    <h4 class="">Theme errors:</h4>
+                    <ul class="gh-error-stack-list">
+                        {{#foreach errorDetails}}
+                        <li>
+                            <h5 class="gh-error-stack-function">{{{rule}}}</h5>
+                            {{#foreach failures}}
+                            <span class="gh-error-stack-file"><strong>Ref:</strong> {{ref}}</span><br>
+                            <span class="gh-error-stack-file"><strong>Message:</strong> {{message}}</span>
+                            {{/foreach}}
+                        </li>
+                        {{/foreach}}
+                    </ul>
+                </div>
+            {{/if}}
+
+        </div>
+
+        {{#get "posts" limit="3"}}
+            <section class="py-16">
+                <h2 class="mb-4 font-medium uppercase text-xs">Kürzliche Beiträge</h2>
+                <div class="@container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    {{#foreach posts}}
+                        {{> "post-card" page=../pagination.page }}
+                    {{/foreach}}
+                </div>
+            </section>
+        {{/get}}
+
+    </div>
+
+</section>

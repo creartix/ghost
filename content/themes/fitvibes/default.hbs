@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{#match @site.url pattern="localhost"}}
+        <script type="module" src="http://localhost:3000/@vite/client"></script>
+        <link rel="stylesheet" href="http://localhost:3000/assets/css/main.css">
+        <script type="module" src="http://localhost:3000/assets/js/app.js"></script>
+    {{else}}
+        <link rel="stylesheet" href="{{asset "built/main.css"}}">
+        <script src="{{asset "built/app.js"}}" defer></script>
+    {{/match}}
+
+    <title>{{meta_title}}</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.12.3/tocbot.css">
+
+    {{ghost_head}}
+
+</head>
+
+<body class="{{body_class}}">
+
+    {{#is 'home, page'}}
+        <div class="h-[45vh] opacity-20 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
+            {{#if @site.cover_image}}
+                <img class="w-full h-full object-cover" src="{{@site.cover_image}}" alt="{{@site.title}} Cover">
+                {{> picture src=@site.cover_image alt=@site.title sizes="(min-width: 1536px) 1536px, (min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw" loading="eager" }}
+            {{else}}
+                <img class="w-full h-full object-cover" src="{{asset "images/hero.jpg"}}" alt="hero">
+            {{/if}}
+        </div>
+    {{/is}}
+
+    <header class="p-6">
+
+        <div class="max-w-8xl mx-auto flex items-center justify-between">
+
+            <div class="flex items-center gap-10">
+                <a href="{{@site.url}}">
+                    {{#if @site.logo}}
+                        <img src="{{@site.logo}}" alt="{{@site.title}}" />
+                        {{> picture src=@site.logo alt=@site.title sizes="200px" loading="eager" }}
+                    {{else}}
+                        <div class="text-2xl text-black font-bold dark:text-white">FitVibes</div>
+                    {{/if}}
+                </a>
+                {{navigation}}
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="md:hidden text-neutral-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <div class="flex gap-4 items-center">
+
+                {{search}}
+
+                {{#if @site.members_enabled}}
+                    {{^if @member}}
+                        <a class="font-semibold" href="{{@site.signup_url}}">Anmelden</a>
+                    {{else}}
+                        <a class="gh-button" href="#/portal/account">Account</a>
+                    {{/if}}
+                {{/if}}
+
+                <button id="themeCycleBtn"
+                    class="relative p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300 group"
+                    aria-label="Theme wechseln">
+                    <!-- Light Icon -->
+                    <svg id="iconLight" class="w-6 h-6 absolute inset-0 m-auto transition-all duration-300 opacity-0 scale-0"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+
+                    <!-- Dark Icon -->
+                    <svg id="iconDark" class="w-6 h-6 absolute inset-0 m-auto transition-all duration-300 opacity-0 scale-0" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+
+                    <!-- System Icon -->
+                    <svg id="iconSystem" class="w-6 h-6 absolute inset-0 m-auto transition-all duration-300 opacity-0 scale-0"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+
+                    <!-- Platzhalter für Button-Größe -->
+                    <div class="w-6 h-6"></div>
+
+                    <!-- Tooltip -->
+                    <span
+                        class="absolute top-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium text-white bg-neutral-900 dark:bg-neutral-700 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                        <span id="tooltipText">System</span>
+                    </span>
+                </button>
+            </div>
+
+        </div>
+
+    </header>
+
+    <main>
+        {{{body}}}
+    </main>
+
+    <footer class="bg-neutral-50 dark:bg-neutral-800 px-6">
+
+        <div class="mx-auto max-w-8xl py-12">
+
+            <div class="xl:grid xl:grid-cols-12 xl:gap-8">
+
+                <div class="space-y-4 xl:col-span-4">
+                    {{#if @site.logo}}
+                        <img class="h-10" src="{{@site.logo}}" alt="{{@site.title}}" />
+                        {{> picture}}
+                    {{else}}
+                        <h2 class="text-2xl text-black font-bold dark:text-white">{{@site.title}}</h2>
+                    {{/if}}
+                    <p class="text-sm/6 text-balance text-neutral-600 dark:text-neutral-400">
+                        Making the world a better place through constructing elegant hierarchies.
+                    </p>
+                </div>
+
+                <div class="mt-6 space-y-6 md:mt-0 md:grid md:grid-cols-3 md:gap-8 xl:col-span-8">
+
+                    <div>
+                        <h3 class="font-semibold text-neutral-900 dark:text-white">Kategorien</h3>
+                        <ul class="mt-2 space-y-1">
+                            {{#get "tags" limit="all"}}
+                            {{#foreach tags}}
+                            <li><a href="{{url}}" class="text-neutral-700 text-sm hover:text-black dark:text-neutral-400 dark:hover:text-white">{{name}}</a></li>
+                            {{/foreach}}
+                            {{/get}}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-neutral-900 dark:text-white">Account</h3>
+                        <ul class="mt-2 space-y-1">
+                            {{#unless @member}}
+                                <li><a href="{{@site.signin_url}}" data-portal="signin" class="text-neutral-700 text-sm hover:text-black dark:text-neutral-400 dark:hover:text-white">Anmelden</a></li>
+                                <li><a href="{{@site.signup_url}}" class="text-neutral-700 text-sm hover:text-black dark:text-neutral-400 dark:hover:text-white">Registrieren</a></li>
+                            {{else}}
+                                <li><a href="{{@site.account_url}}" class="text-neutral-700 text-sm hover:text-black dark:text-neutral-400 dark:hover:text-white">Account</a></li>
+                                <li><a href="#" data-portal="signout" class="text-neutral-700 text-sm hover:text-black dark:text-neutral-400 dark:hover:text-white">Abmelden</a></li>
+                            {{/unless}}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-neutral-900 dark:text-white">Links</h3>
+                        <ul class="mt-2 space-y-1">
+                            <li><a href="/datenschutz" class="text-neutral-700 text-sm hover:text-black dark:text-neutral-400 dark:hover:text-white">Datenschutz</a></li>
+                            <li><a href="/impressum" class="text-neutral-700 text-sm hover:text-black dark:text-neutral-400 dark:hover:text-white">Impressum</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <div class="bg-neutral-100 p-6 text-sm dark:bg-neutral-900/70">
+        <div class="mx-auto max-w-8xl">
+            <div class="flex items-center justify-between">
+                <div class="dark:text-neutral-400">
+                    &copy; {{date format="YYYY"}} {{@site.title}}, Inc. All rights reserved.
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-neutral-700 hover:text-black">Cookie-Einstellungen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{#is "post"}}
+        <script>
+            const progressBar = document.querySelector('.reading-progress');
+            function updateProgress() {
+                const totalHeight = document.body.clientHeight;
+                const windowHeight = document.documentElement.clientHeight;
+                const position = window.scrollY;
+                const progress = position / (totalHeight - windowHeight) * 100;
+                progressBar.setAttribute('value', progress);
+                requestAnimationFrame(updateProgress);
+            }
+            requestAnimationFrame(updateProgress);
+        </script>
+    {{/is}}
+
+    <script src="{{asset "js/tocbot.js"}}"></script>
+
+    <script>
+        tocbot.init({
+            tocSelector: '.toc',
+            contentSelector: '.gh-content',
+            headingSelector: 'h1, h2, h3, h4',
+            hasInnerContainers: true,
+        });
+    </script>
+
+    {{ghost_foot}}
+
+</body>
+
+</html>

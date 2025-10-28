@@ -1,0 +1,215 @@
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* fraunces-300 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Fraunces';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../webfont/fraunces-v38-latin-300.woff2') format('woff2');
+}
+
+/* fraunces-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Fraunces';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../webfont/fraunces-v38-latin-regular.woff2') format('woff2');
+}
+
+/* fraunces-500 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Fraunces';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../webfont/fraunces-v38-latin-500.woff2') format('woff2');
+}
+
+/* fraunces-600 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Fraunces';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../webfont/fraunces-v38-latin-600.woff2') format('woff2');
+}
+
+/* fraunces-700 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Fraunces';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../webfont/fraunces-v38-latin-700.woff2') format('woff2');
+}
+
+@theme {
+    --font-family-headline: "Fraunces", "serif";
+
+    --spacing-8xl: 1340px;
+
+    --aspect-ratio-article: 4 / 2.5;
+}
+
+:root {
+    --gh-font-heading: "Fraunces", "serif";
+    --gh-font-body: "Inter", "sans-serif";
+}
+
+html, body {
+    @apply text-neutral-600 antialiased dark:bg-neutral-900 dark:text-neutral-300 scroll-smooth
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    @apply mb-4 text-black font-headline font-semibold dark:text-white
+}
+
+.post-content h2 {
+    @apply text-4xl
+}
+
+.post-content h3 {
+    @apply text-3xl
+}
+
+.post-content p {
+    @apply text-neutral-800 text-lg leading-relaxed dark:text-neutral-300
+}
+
+.post-content img {
+    @apply rounded-xl
+}
+
+.post-content p,
+.post-content iframe,
+.post-content ol,
+.post-content ul,
+.post-content table {
+    @apply mb-8 last:mb-0
+}
+
+.post-content hr {
+    @apply mt-8 mb-16 relative left-1/2 transform -translate-x-1/2;
+}
+
+.post-content hr,
+.post-content hr::before,
+.post-content hr::after {
+    @apply inline-block size-1.5 border-0 bg-black rounded-full dark:bg-white;
+}
+
+.post-content hr::before,
+.post-content hr::after {
+    @apply content-[""] absolute;
+}
+
+.post-content hr::before {
+    @apply -left-6;
+}
+
+.post-content hr::after {
+    @apply left-6;
+}
+
+.kg-width-full {
+    @apply -mx-6 sm:-mx-12 md:-mx-16 lg:-mx-0;
+}
+
+.kg-width-wide {
+    @apply -mx-6 sm:-mx-12 md:-mx-16 lg:mx-0;
+}
+
+.kg-bookmark-container {
+    @apply bg-white rounded-2xl! my-12 max-w-3xl mx-auto shadow-xl hover:bg-neutral-50! hover:-translate-y-1 transition duration-300 dark:bg-neutral-800! dark:hover:bg-neutral-700!;
+}
+
+.kg-bookmark-content .kg-bookmark-title {
+    @apply text-2xl font-semibold font-headline dark:text-white;
+}
+
+.kg-bookmark-content .kg-bookmark-description {
+    @apply mt-2 text-base dark:text-neutral-200;
+}
+
+.kg-bookmark-container .kg-bookmark-thumbnail {
+    @apply w-1/3! aspect-article p-2
+}
+
+.kg-bookmark-container .kg-bookmark-thumbnail img {
+    @apply w-full h-full object-cover static!
+}
+
+.kg-bookmark-container .kg-bookmark-metadata {
+    @apply dark:text-neutral-400
+}
+
+.kg-toggle-card {
+    @apply rounded-2xl! mb-8 dark:bg-neutral-900 dark:border-neutral-600!
+}
+
+.kg-toggle-card .kg-toggle-heading {
+    @apply text-base! font-semibold text-black dark:text-white
+}
+
+.kg-product-card .kg-product-card-container {
+    @apply rounded-2xl! mb-10 max-w-md mx-auto shadow-xl hover:-translate-y-1 transition duration-300;
+}
+
+.kg-product-card-title {
+    @apply text-2xl! font-semibold font-headline;
+}
+
+.kg-product-card-description p {
+    @apply mt-2 text-base!;
+}
+
+.kg-product-card-button.kg-product-card-btn-accent {
+    @apply bg-black! h-auto! text-white! font-semibold! rounded-full! px-6! py-4! hover:bg-neutral-800 transition duration-300;
+}
+
+.kg-callout-card {
+    @apply rounded-2xl mb-8
+}
+
+.kg-embed-card iframe {
+    @apply rounded-2xl mb-8
+}
+
+.reading-progress {
+    @apply fixed top-0 z-1000 w-full h-1.5 bg-neutral-200 appearance-none dark:bg-neutral-800;
+}
+
+.reading-progress::-webkit-progress-bar {
+    @apply bg-transparent
+}
+
+.reading-progress::-webkit-progress-value {
+    @apply bg-black!
+}
+.dark .reading-progress::-webkit-progress-value {
+    @apply bg-white!
+}
+
+.toc-list {
+    @apply list-none p-0 m-0
+}
+
+.toc-list li.toc-list-item a.toc-link {
+    @apply py-1.5! text-sm!
+}
+
+.toc-list li.toc-list-item a.is-active-link {
+    @apply font-semibold! text-[var(--ghost-accent-color)] dark:text-white
+}
+
+.toc-list .toc-list-item a:before {
+    @apply hidden
+}

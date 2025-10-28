@@ -1,0 +1,37 @@
+# Node modules (Ghost Core)
+node_modules/
+bower_components/
+
+# Logdateien
+content/logs/
+*.log
+
+# Datenbankdateien (lokal)
+content/data/ghost-local.db
+
+# PIDs und Runtime-Dateien
+.ghostpid
+
+# OS-spezifische Dateien
+.DS_Store
+Thumbs.db
+
+# Backup & Build Verzeichnisse
+content/themes/**/assets/built/
+content/themes/fitvibes/
+
+# Ghost-automatisch erzeugte Dateien
+content/adapters/
+current/
+versions/
+
+# Optional: alles außer dein Theme (für reines Theme-Repo)
+!content/
+content/*
+!content/themes/
+!content/themes/*
+!content/themes/**/*
+
+# Einstellung: ggf. eigene Build-/Dist-Ordner
+dist/
+build/

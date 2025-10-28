@@ -1,0 +1,34 @@
+{{!< default}}
+
+{{#tag}}
+    <div class="h-[45vh] opacity-20 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
+        <img class="w-full h-full object-cover" src="{{img_url feature_image size=" m"}}" alt="{{primary_tag.name}}">
+    </div>
+
+    <div class="max-w-5xl mx-auto px-8 py-12 text-center">
+        <h1 class="font-headline font-light text-xl text-black leading-tight md:text-2xl lg:text-5xl dark:text-white">
+            <span class="font-semibold">{{name}}</span>
+        </h1>
+        <p class="mt-4 font-headline font-light text-xl dark:text-neutral-200">
+            {{#if description}}
+                {{description}}
+            {{else}}
+                A collection of {{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}}
+            {{/if}}
+        </p>
+    </div>
+{{/tag}}
+
+<section class="py-16">
+    <div class="max-w-8xl mx-auto">
+        <section>
+            <h2 class="mb-4 font-medium uppercase text-xs dark:text-neutral-400">{{#tag}}Alles Beiträge über {{name}}{{/tag}}</h2>
+            <div class="@container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                {{#foreach posts}}
+                    {{> "post-card"}}
+                {{/foreach}}
+            </div>
+        </section>
+    </div>
+</section>
+

@@ -1,0 +1,49 @@
+{{!< default}}
+
+<div class="max-w-5xl mx-auto px-8 py-12 text-center">
+    <h1 class="font-headline font-light text-3xl text-black leading-tight md:text-4xl lg:text-5xl dark:text-white">
+        <span class="font-semibold">Hey, wir sind FitVibes.</span> Wir bringen dich in Bewegung mit
+        <span class="font-semibold">inspirierenden Artikeln</span> zu Fitness, Ernährung und für mehr Drive und Motivation im Alltag.
+    </h1>
+</div>
+
+<section class="my-12 px-6">
+
+    <div class="max-w-8xl mx-auto">
+
+        <section>
+            <h2 class="mb-4 font-medium uppercase text-xs dark:text-neutral-400">Beliebte Tags</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6">
+                {{#get "tags" limit="6"}}
+                {{#foreach tags}}
+                    <a href="{{url}}"
+                        class="relative aspect-article overflow-hidden rounded-2xl hover:-translate-y-1 transition ease duration-400">
+                        <img class="w-full h-full object-cover" src="{{img_url feature_image size=" m"}}" alt="{{name}}" />
+                        <div class="py-2 px-3 backdrop-blur-md absolute bottom-3 left-3 z-10 rounded-full{{#unless accent_color}} bg-white/40{{/unless}}"{{#if accent_color}} style="background-color: {{accent_color}}60;"{{/if}}>
+                            <h3 class="text-xs font-semibold text-black">{{name}}</h3>
+                        </div>
+                    </a>
+                {{/foreach}}
+                {{/get}}
+            </div>
+        </section>
+
+        <section class="py-16">
+            <h2 class="mb-4 font-medium uppercase text-xs dark:text-neutral-400">Andere Beiträge</h2>
+            <div class="@container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                {{#foreach posts}}
+                    {{> "post-card" page=../pagination.page }}
+                {{/foreach}}
+            </div>
+        </section>
+
+        {{!-- If JS isn't enabled, fallback to standard pagination --}}
+        <noscript>
+            <div class="gh-pagination">
+                {{pagination}}
+            </div>
+        </noscript>
+
+    </div>
+
+</section>

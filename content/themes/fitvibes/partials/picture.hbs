@@ -1,0 +1,44 @@
+{{!--
+    PARAMETERS:
+    - src: Image URL (required)
+    - alt: Alt text (optional, fallback to @site.title)
+    - sizes: Sizes attribute (optional, default: 100vw)
+    - class: CSS class for <picture> wrapper (optional)
+    - imgClass: CSS class for <img> tag (optional)
+    - loading: lazy/eager (optional, default: lazy)
+    - width: Width in px (optional, for CLS prevention)
+    - height: Height in px (optional, for CLS prevention)
+    - decoding: async/sync/auto (optional)
+--}}
+
+{{#if src}}
+    <picture class="{{class}}">
+        <source
+            type="image/webp"
+            srcset="
+                {{img_url src size="s" format="webp" }} 300w,
+                {{img_url src size="m" format="webp" }} 600w,
+                {{img_url src size="l" format="webp" }} 1000w,
+                {{img_url src size="xl" format="webp" }} 2000w"
+            sizes="{{#if sizes}}{{sizes}}{{else}}100vw{{/if}}"
+        >
+        {{!-- Fallback  --}}
+        <source srcset="{{img_url src size="s"}} 300w, {{img_url src size="m" }} 600w, {{img_url src size="l" }} 1000w, {{img_url src size="xl" }} 2000w" sizes="{{#if sizes}}{{sizes}}{{else}}100vw{{/if}}">
+
+        {{!-- Fallback img tag --}}
+        <img
+            src="{{img_url src size="l"}}"
+            alt="{{#if alt}}{{alt}}{{else}}{{@site.title}}{{/if}}"
+            {{#if width}}width="{{width}}" {{/if}}
+            {{#if height}}height="{{height}} "{{/if}}
+            {{#if loading}}
+                loading="{{loading}}"
+            {{else}}
+                loading="lazy"
+            {{/if}}
+            {{#if decoding}} decoding="{{decoding}}"
+            {{/if}}
+            class="w-full h-full object-cover{{imgClass}}"
+        >
+    </picture>
+{{/if}}
