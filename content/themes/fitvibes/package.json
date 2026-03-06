@@ -69,7 +69,8 @@
             "xl": {
                 "width": 2000
             }
-        }
+        },
+        "custom_theme_settings": []
     },
     "type": "module",
     "dependencies": {
