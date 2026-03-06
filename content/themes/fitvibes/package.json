@@ -36,8 +36,8 @@
         "url": ""
     },
     "devDependencies": {
+        "@tailwindcss/cli": "^4.2.1",
         "@tailwindcss/postcss": "4.0.0-alpha.30",
-        "@vitejs/plugin-legacy": "^7.2.1",
         "bestzip": "^2.2.1",
         "browser-sync": "^3.0.4",
         "concurrently": "^8.2.0",
@@ -70,7 +70,13 @@
                 "width": 2000
             }
         },
-        "custom_theme_settings": []
+        "custom_theme_settings": [],
+        "portal": {
+            "button": true,
+            "name": true,
+            "plans": ["free", "monthly", "yearly"],
+            "default": "free"
+        }
     },
     "type": "module",
     "dependencies": {

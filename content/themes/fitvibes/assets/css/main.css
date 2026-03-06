@@ -96,6 +96,10 @@ html, body {
     @apply mb-8 last:mb-0
 }
 
+.post-content ul {
+    @apply list-disc pl-7 space-y-2.5
+}
+
 .post-content hr {
     @apply mt-8 mb-16 relative left-1/2 transform -translate-x-1/2;
 }
@@ -103,7 +107,7 @@ html, body {
 .post-content hr,
 .post-content hr::before,
 .post-content hr::after {
-    @apply inline-block size-1.5 border-0 bg-black rounded-full dark:bg-white;
+    @apply inline-block size-1.5 border-0 bg-neutral-300 rounded-full dark:bg-white overflow-visible;
 }
 
 .post-content hr::before,
@@ -112,7 +116,7 @@ html, body {
 }
 
 .post-content hr::before {
-    @apply -left-6;
+    @apply -left-6 dark:bg-white!;
 }
 
 .post-content hr::after {
@@ -212,4 +216,99 @@ html, body {
 
 .toc-list .toc-list-item a:before {
     @apply hidden
+}
+
+/* Hide Ghost's default paid content notice */
+.gh-post-upgrade-cta {
+    display: none !important;
+}
+
+/* Ghost Portal Customization */
+
+/* Portal Container */
+.gh-portal-container {
+    @apply font-sans;
+}
+
+/* Portal Backdrop */
+.gh-portal-backdrop {
+    @apply backdrop-blur-sm;
+}
+
+/* Portal Main Content */
+.gh-portal-content {
+    @apply rounded-3xl shadow-2xl;
+}
+
+/* Portal Header */
+.gh-portal-header {
+    @apply font-headline;
+}
+
+/* Portal Buttons */
+.gh-portal-btn-primary {
+    @apply rounded-full font-semibold transition-all duration-300 hover:brightness-110;
+}
+
+.gh-portal-btn-secondary {
+    @apply rounded-full border-2 font-semibold transition-all duration-300;
+}
+
+/* Portal Input Fields */
+.gh-portal-input {
+    @apply rounded-full px-4 py-3 border-2 border-neutral-300 focus:border-black focus:ring-2 focus:ring-black/10 transition-all;
+}
+
+/* Portal Links */
+.gh-portal-link {
+    @apply text-black hover:underline underline-offset-4 transition-all;
+}
+
+/* Portal Close Button */
+.gh-portal-close {
+    @apply rounded-full hover:bg-neutral-100 transition-all;
+}
+
+/* Portal Plans (Pricing) */
+.gh-portal-plan {
+    @apply rounded-2xl border-2 hover:border-black transition-all;
+}
+
+.gh-portal-plan-selected {
+    @apply border-black bg-neutral-50;
+}
+
+/* Portal Success Message */
+.gh-portal-notification-success {
+    @apply rounded-2xl bg-green-50 border-2 border-green-200 text-green-800;
+}
+
+/* Portal Error Message */
+.gh-portal-notification-error {
+    @apply rounded-2xl bg-red-50 border-2 border-red-200 text-red-800;
+}
+
+/* Dark Mode Portal Adjustments */
+.dark .gh-portal-content {
+    @apply bg-neutral-900 text-white;
+}
+
+.dark .gh-portal-input {
+    @apply bg-neutral-800 border-neutral-700 text-white focus:border-white;
+}
+
+.dark .gh-portal-link {
+    @apply text-white;
+}
+
+.dark .gh-portal-close {
+    @apply hover:bg-neutral-800;
+}
+
+.dark .gh-portal-plan {
+    @apply border-neutral-700 hover:border-white;
+}
+
+.dark .gh-portal-plan-selected {
+    @apply border-white bg-neutral-800;
 }

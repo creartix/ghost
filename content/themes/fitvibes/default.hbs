@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{@site.locale}}">
+<html lang="{{@site.locale}}" class="{{body_class}}">
 
 <head>
 
@@ -12,7 +12,6 @@
         <script type="module" src="http://localhost:3000/assets/js/app.js"></script>
     {{else}}
         <link rel="stylesheet" href="{{asset "built/main.css"}}">
-        <script src="{{asset "built/app.js"}}" defer></script>
     {{/match}}
 
     <title>{{meta_title}}</title>

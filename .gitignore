@@ -1,37 +1,48 @@
-# Node modules (Ghost Core)
+# Ghost Installation .gitignore
+
+# Node modules
 node_modules/
 bower_components/
 
-# Logdateien
+# Ghost Core (managed by Ghost CLI)
+versions/
+current
+
+# Content - Data & Uploads (nicht in Git)
+content/data/
+content/images/
+content/media/
+content/files/
 content/logs/
+content/adapters/
+content/public/
+
+# Themes - NUR dein Custom Theme tracken
+content/themes/casper/
+content/themes/source/
+# content/themes/fitvibes/ bleibt getrackt!
+
+# Logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Datenbankdateien (lokal)
-content/data/ghost-local.db
-
-# PIDs und Runtime-Dateien
+# Runtime
 .ghostpid
+.ghost-cli
 
-# OS-spezifische Dateien
+# OS
 .DS_Store
 Thumbs.db
 
-# Backup & Build Verzeichnisse
-content/themes/**/assets/built/
-content/themes/fitvibes/
+# Environment
+.env
+.env.local
+.env.*.local
 
-# Ghost-automatisch erzeugte Dateien
-content/adapters/
-current/
-versions/
-
-# Optional: alles außer dein Theme (für reines Theme-Repo)
-!content/
-content/*
-!content/themes/
-!content/themes/*
-!content/themes/**/*
-
-# Einstellung: ggf. eigene Build-/Dist-Ordner
-dist/
-build/
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

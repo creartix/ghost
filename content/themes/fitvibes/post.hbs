@@ -1,116 +1,183 @@
-{{!< default}}
-<progress class="reading-progress" value="0" max="100" aria-label="Reading progress"></progress>
+{{!< default}} <progress class="reading-progress" value="0" max="100" aria-label="Reading progress"></progress>
 
-{{#tag}}
-    <div class="h-[45vh] opacity-20 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
+    {{#tag}}
+    <div
+        class="h-[45vh] opacity-20 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
         <img class="w-full h-full object-cover" src="{{img_url feature_image size=" m"}}" alt="{{primary_tag.name}}">
     </div>
-{{/tag}}
+    {{/tag}}
 
-{{#post}}
-    <article id="intro" class="my-12 px-8 {{post_class}}">
+    {{#post}}
+    <article id="intro" class="mt-12 mb-4 px-8 {{post_class}}">
 
         <header class="max-w-5xl mx-auto space-y-10">
 
             <h1 class="font-headline text-black font-bold text-4xl md:text-6xl dark:text-white">{{title}}</h1>
 
             {{#if custom_excerpt}}
-                <p class="text-xl text-black dark:text-neutral-200">{{custom_excerpt}}</p>
+            <p class="text-xl text-black dark:text-neutral-200">{{custom_excerpt}}</p>
             {{/if}}
 
             {{#if tags}}
-                <div class="flex flex-wrap gap-3">
-                    {{#foreach tags}}
-                        <a
-                            href="{{url}}"
-                            class="text-sm px-3 py-1.5 rounded-full bg-neutral-100 font-semibold text-neutral-600 hover:bg-neutral-200 hover:text-neutral-800 transition ease duration-300 dark:bg-neutral-600 dark:text-neutral-100"
-                        >
-                            {{name}}
-                        </a>
-                    {{/foreach}}
-                </div>
-                <hr class="border-neutral-300 dark:border-neutral-700" />
+            <div class="flex flex-wrap gap-3">
+                {{#foreach tags}}
+                <a href="{{url}}"
+                    class="text-sm px-3 py-1.5 rounded-full bg-neutral-100 font-semibold text-neutral-600 hover:bg-neutral-200 hover:text-neutral-800 transition ease duration-300 dark:bg-neutral-600 dark:text-neutral-100">
+                    {{name}}
+                </a>
+                {{/foreach}}
+            </div>
+            <hr class="border-neutral-300 dark:border-neutral-700" />
             {{/if}}
 
             <div class="flex items-center gap-3">
                 <div>
-                    <div class="bg-neutral-100 size-12 flex justify-center items-center font-semibold text-sm rounded-full dark:bg-neutral-700 dark:text-white">
+                    <div
+                        class="bg-neutral-100 size-12 flex justify-center items-center font-semibold text-sm rounded-full dark:bg-neutral-700 dark:text-white">
                         MR
                     </div>
                 </div>
                 <span class="text-sm text-neutral-800 dark:text-neutral-300">
                     <span class="block">von {{#foreach authors}}<a href="{{url}}">{{name}}</a>{{/foreach}}</span>
                     <time datetime="{{date format=" YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
-                    <span class="bull">&bull;</span> {{reading_time}}
+                    <span class="bull">&bull;</span> {{reading_time minute="1 Minute Lesedauer" minutes="% Minuten Lesedauer"}}
                 </span>
             </div>
 
         </header>
 
         {{#if feature_image}}
-            <figure class="max-w-7xl mx-auto my-10">
-                {{> picture src=feature_image alt=feature_image_alt sizes="(min-width: 1200px) 1200px, 100vw" class="aspect-video block w-full rounded-2xl overflow-hidden" width="1200" height="630" }}
-                {{#if feature_image_caption}}
-                    <figcaption class="text-xs mt-2">
-                        {{feature_image_caption}}
-                    </figcaption>
-                {{/if}}
-            </figure>
+        <figure class="max-w-7xl mx-auto my-10">
+            {{> picture src=feature_image alt=feature_image_alt sizes="(min-width: 1200px) 1200px, 100vw" class="aspect-video block w-full rounded-2xl overflow-hidden" width="1200" height="630" }}
+            {{#if feature_image_caption}}
+            <figcaption class="text-xs mt-2">
+                {{feature_image_caption}}
+            </figcaption>
+            {{/if}}
+        </figure>
         {{/if}}
 
         <div class="gh-content grid grid-cols-1 md:grid-cols-12 gap-16 max-w-6xl mx-auto">
+
             <div class="order-2 md:order-1 text-lg post-content md:col-span-8">
+
                 {{content}}
+
+                {{#unless access}}
+                <div class="relative">
+                    <div class="absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-white to-transparent dark:from-neutral-900">
+                    </div>
+                </div>
+                <div class="p-8 bg-neutral-200 rounded-2xl dark:bg-neutral-800">
+                    {{#has visibility="paid"}}
+                        <h3 class="font-headline text-2xl font-bold text-black mb-4 dark:text-white">
+                            Exklusiver Premium-Inhalt
+                        </h3>
+                        <p class="text-neutral-700 mb-4! text-base! dark:text-neutral-300">
+                            Dieser Artikel enthält exklusive Inhalte, die nur für unsere <strong>zahlenden Premium-Mitglieder</strong> verfügbar sind.
+                        </p>
+                    {{else}}
+                        <h3 class="font-headline text-2xl font-bold text-black mb-4 dark:text-white">
+                            Mitglieder-Inhalt
+                        </h3>
+                        <p class="text-neutral-700 mb-4! text-base! dark:text-neutral-300">
+                            Dieser Artikel ist nur für <strong>registrierte Mitglieder</strong> verfügbar. Melde dich kostenlos an!
+                        </p>
+                    {{/has}}
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <a
+                            href="#/portal/signup"
+                            class="inline-flex items-center justify-center px-6 py-2.5 bg-black border-2 border-black text-white font-semibold rounded-full hover:bg-neutral-700 transition dark:bg-white dark:text-black dark:hover:bg-neutral-200"
+                        >
+                            {{#has visibility="paid"}}Premium-Mitglied werden{{else}}Kostenlos registrieren{{/has}}
+                        </a>
+                        <a
+                            href="#/portal/signin"
+                            class="inline-flex items-center justify-center px-6 py-2.5 border-2 border-black text-black font-semibold rounded-full hover:bg-neutral-200 transition dark:border-white dark:text-white dark:hover:bg-neutral-800"
+                        >
+                            Bereits Mitglied? Anmelden
+                        </a>
+                    </div>
+                </div>
+
+                {{/unless}}
+
             </div>
+
             <div class="order-1 md:order-2 md:col-span-4 md:sticky md:top-10 self-start">
+
                 <div class="gh-toc">
                     <strong class="mb-2.5 block text-base text-black dark:text-white">Inhalt</strong>
-                    <a href="#intro" class="block py-1.5 text-sm">Introduction</a>
+                    <a href="#intro" class="block py-1.5 text-sm">Einleitung</a>
                     <div class="toc"></div>
                 </div>
+
+                <div class="mt-12 p-8 bg-emerald-100 rounded-2xl text-white dark:bg-neutral-800">
+                    <h3 class="font-headline text-3xl font-bold mb-3 text-black dark:text-white">
+                        Bleib auf dem Laufenden!
+                    </h3>
+                    <p class="mb-6 text-sm text-black dark:text-neutral-400">
+                        Erhalte die neuesten Fitness-Tipps, Ernährungsguides und exklusive Inhalte direkt in dein Postfach.
+                    </p>
+                    <form data-members-form="subscribe" class="flex flex-col gap-3">
+                        <input class="bg-white flex-1 px-4 py-3 border-none rounded-full text-black focus:outline-none focus:ring-offset-2 focus:ring-2 focus:ring-black" type="email" data-members-email placeholder="Deine E-Mail-Adresse" required />
+                        <button type="submit"
+                            class="inline-flex items-center justify-center px-6 py-2.5 bg-black border-2 border-black text-white font-semibold rounded-full hover:bg-neutral-700 transition dark:bg-white dark:text-black dark:hover:bg-neutral-200">
+                            Jetzt anmelden
+                        </button>
+                    </form>
+                    <p class="text-xs text-black dark:text-neutral-400 mt-4">
+                        Kostenlos und jederzeit abbestellbar.
+                    </p>
+                </div>
+
             </div>
+
         </div>
 
         <div class="max-w-6xl mx-auto">
-            <footer>
-                {{#if comments}}
-                <section class="mt-24">
-                    {{comments}}
-                </section>
-                {{/if}}
-            </footer>
+            {{#if comments}}
+            <section class="bg-neutral-50 mt-24 p-16 rounded-2xl">
+                {{comments title="Kommentare" count=true mode="light"}}
+            </section>
+            {{/if}}
         </div>
 
     </article>
 
-    <aside class="max-w-7xl mx-auto">
+    <aside class="max-w-7xl mx-auto px-8">
 
-        <div class="flex items-start justify-between gap-6 py-12">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-12 md:gap-6 py-12">
 
-            <div class="w-1/2 flex items-center justify-end gap-3">
+            <div class="md:w-1/2 flex md:items-center gap-3">
                 {{#next_post}}
-                    <a class="flex items-center gap-4 group" href="{{url}}">
-                        <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
-                            <img class="w-full h-full object-cover" src="{{img_url feature_image size=" s"}}" alt="" />
-                        </span>
-                        <span>
-                            <span class="text-xs">Neuerer Post</span>
-                            <h4 class="font-headline text-2xl pr-10 text-black font-semibold group-hover:underline group-hover:underline-offset-4 dark:text-white">{{title}}</h4>
-                        </span>
-                    </a>
-                {{/next_post}}
-            </div>
-
-            <div class="w-1/2 flex items-center justify-end gap-3 group">
-                {{#prev_post}}
-                <a class="flex items-center gap-4 text-right" href="{{url}}">
-                    <span>
-                        <span class="text-xs">Älterer Post</span>
-                        <h4 class="font-headline text-2xl pl-10 text-black font-semibold group-hover:underline group-hover:underline-offset-4 dark:text-white">{{title}}</h4>
-                    </span>
+                <a class="flex items-center gap-4 group" href="{{url}}">
                     <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
                         <img class="w-full h-full object-cover" src="{{img_url feature_image size=" s"}}" alt="" />
                     </span>
+                    <span>
+                        <span class="text-xs">Neuerer Post</span>
+                        <h4
+                            class="font-headline text-xl pr-10 text-black font-semibold group-hover:underline group-hover:underline-offset-4 dark:text-white">
+                            {{title}}</h4>
+                    </span>
+                </a>
+                {{/next_post}}
+            </div>
+
+            <div class="md:w-1/2 flex items-center md:justify-end gap-3 group">
+                {{#prev_post}}
+                <a class="flex items-center gap-4 md:text-right md:flex-row-reverse" href="{{url}}">
+                    <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
+                        <img class="w-full h-full object-cover" src="{{img_url feature_image size=" s"}}" alt="" />
+                    </span>
+                    <span>
+                        <span class="text-xs">Älterer Post</span>
+                        <h4
+                            class="font-headline text-xl md:pl-10 text-black font-semibold group-hover:underline group-hover:underline-offset-4 dark:text-white">
+                            {{title}}</h4>
+                    </span>
+
                 </a>
                 {{/prev_post}}
             </div>
@@ -119,4 +186,4 @@
 
     </aside>
 
-{{/post}}
+    {{/post}}
