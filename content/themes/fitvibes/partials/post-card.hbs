@@ -7,6 +7,10 @@ Re-usable card for linking to posts
   {{#if feature_image}}
     <a class="w-1/3 block relative aspect-article shrink-0 rounded-3xl overflow-hidden group-hover/article:-translate-y-1.5 transition ease duration-400 @xl:mb-4 @xl:w-full" href="{{url}}">
 
+      {{#if featured}}
+        <span class="bg-yellow-500 px-3.5 py-2.5 text-white text-xs font-semibold absolute top-3 left-3 z-10 rounded-full">Featured</span>
+      {{/if}}
+
       {{#if visibility}}
         {{#match visibility "!=" "public"}}
           <span class="hidden sm:inline-block absolute bottom-3 left-3 z-10 px-3.5 py-2.5 rounded-full text-xs font-semibold bg-emerald-700 text-white backdrop-blur-sm">

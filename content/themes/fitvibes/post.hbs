@@ -3,7 +3,7 @@
     {{#tag}}
     <div
         class="h-[45vh] opacity-20 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
-        <img class="w-full h-full object-cover" src="{{img_url feature_image size=" m"}}" alt="{{primary_tag.name}}">
+        <img class="w-full h-full object-cover" src="{{img_url feature_image size="m"}}" alt="{{primary_tag.name}}">
     </div>
     {{/tag}}
 
@@ -15,34 +15,51 @@
             <h1 class="font-headline text-black font-bold text-4xl md:text-6xl dark:text-white">{{title}}</h1>
 
             {{#if custom_excerpt}}
-            <p class="text-xl text-black dark:text-neutral-200">{{custom_excerpt}}</p>
+                <p class="text-xl text-black dark:text-neutral-200">{{custom_excerpt}}</p>
             {{/if}}
 
             {{#if tags}}
-            <div class="flex flex-wrap gap-3">
-                {{#foreach tags}}
-                <a href="{{url}}"
-                    class="text-sm px-3 py-1.5 rounded-full bg-neutral-100 font-semibold text-neutral-600 hover:bg-neutral-200 hover:text-neutral-800 transition ease duration-300 dark:bg-neutral-600 dark:text-neutral-100">
-                    {{name}}
-                </a>
-                {{/foreach}}
-            </div>
-            <hr class="border-neutral-300 dark:border-neutral-700" />
+                <div class="flex flex-wrap gap-3">
+                    {{#foreach tags}}
+                    <a href="{{url}}"
+                        class="text-sm px-3 py-1.5 rounded-full bg-neutral-100 font-semibold text-neutral-600 hover:bg-neutral-200 hover:text-neutral-800 transition ease duration-300 dark:bg-neutral-600 dark:text-neutral-100 active:scale-[.98]">
+                        {{name}}
+                    </a>
+                    {{/foreach}}
+                </div>
+                <hr class="border-neutral-300 dark:border-neutral-700" />
             {{/if}}
 
-            <div class="flex items-center gap-3">
-                <div>
-                    <div
-                        class="bg-neutral-100 size-12 flex justify-center items-center font-semibold text-sm rounded-full dark:bg-neutral-700 dark:text-white">
-                        MR
+            {{#if authors}}
+                <div class="flex items-center gap-3">
+                    {{#foreach authors}}
+                        {{#if profile_image}}
+                            <a href="{{url}}" class="shrink-0">
+                                <img src="{{img_url profile_image size="xs"}}" alt="{{name}}" class="size-12 rounded-full object-cover" />
+                            </a>
+                        {{else}}
+                            <a href="{{url}}" class="shrink-0">
+                                <div
+                                    class="bg-neutral-100 size-12 flex justify-center items-center font-semibold text-sm rounded-full dark:bg-neutral-700 dark:text-white">
+                                    {{#if name}}{{substring name 0 2}}{{else}}??{{/if}}
+                                </div>
+                            </a>
+                        {{/if}}
+                    {{/foreach}}
+                    <div class="text-sm text-neutral-800 dark:text-neutral-300">
+                        <div class="font-medium">
+                            {{#foreach authors}}
+                            <a href="{{url}}" class="hover:text-black dark:hover:text-white">{{name}}</a>{{#unless @last}}, {{/unless}}
+                            {{/foreach}}
+                        </div>
+                        <div class="text-neutral-600 dark:text-neutral-400">
+                            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                            <span class="mx-0.5">·</span>
+                            {{reading_time minute="1 Minute" minutes="% Minuten"}}
+                        </div>
                     </div>
                 </div>
-                <span class="text-sm text-neutral-800 dark:text-neutral-300">
-                    <span class="block">von {{#foreach authors}}<a href="{{url}}">{{name}}</a>{{/foreach}}</span>
-                    <time datetime="{{date format=" YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
-                    <span class="bull">&bull;</span> {{reading_time minute="1 Minute Lesedauer" minutes="% Minuten Lesedauer"}}
-                </span>
-            </div>
+            {{/if}}
 
         </header>
 
@@ -112,7 +129,8 @@
                     <div class="toc"></div>
                 </div>
 
-                <div class="mt-12 p-8 bg-emerald-100 rounded-2xl text-white dark:bg-neutral-800">
+                <div class="mt-12 p-8 bg-emerald-100 rounded-2xl text-white dark:bg-emerald-900">
+                    <div class="mb-2 text-neutral-400 dark:text-neutral-400 text-xs uppercase">Newsletter</div>
                     <h3 class="font-headline text-3xl font-bold mb-3 text-black dark:text-white">
                         Bleib auf dem Laufenden!
                     </h3>
@@ -122,8 +140,13 @@
                     <form data-members-form="subscribe" class="flex flex-col gap-3">
                         <input class="bg-white flex-1 px-4 py-3 border-none rounded-full text-black focus:outline-none focus:ring-offset-2 focus:ring-2 focus:ring-black" type="email" data-members-email placeholder="Deine E-Mail-Adresse" required />
                         <button type="submit"
-                            class="inline-flex items-center justify-center px-6 py-2.5 bg-black border-2 border-black text-white font-semibold rounded-full hover:bg-neutral-700 transition dark:bg-white dark:text-black dark:hover:bg-neutral-200">
+                            class="bg-emerald-800 text-white inline-flex justify-center items-center cursor-pointer gap-2 px-6 py-2.5 font-semibold rounded-full group active:scale-[.98] transition-all">
                             Jetzt anmelden
+                            <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="20" height="20"
+                                class="group-hover:translate-x-1 transition-transform duration-300">
+                                <path fill="#fff"
+                                    d="M18,12h0a2,2,0,0,0-.59-1.4l-4.29-4.3a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42L15,11H5a1,1,0,0,0,0,2H15l-3.29,3.29a1,1,0,0,0,1.41,1.42l4.29-4.3A2,2,0,0,0,18,12Z" />
+                            </svg>
                         </button>
                     </form>
                     <p class="text-xs text-black dark:text-neutral-400 mt-4">
@@ -153,7 +176,7 @@
                 {{#next_post}}
                 <a class="flex items-center gap-4 group" href="{{url}}">
                     <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
-                        <img class="w-full h-full object-cover" src="{{img_url feature_image size=" s"}}" alt="" />
+                        <img class="w-full h-full object-cover" src="{{img_url feature_image size="s"}}" alt="" />
                     </span>
                     <span>
                         <span class="text-xs">Neuerer Post</span>
@@ -169,7 +192,7 @@
                 {{#prev_post}}
                 <a class="flex items-center gap-4 md:text-right md:flex-row-reverse" href="{{url}}">
                     <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
-                        <img class="w-full h-full object-cover" src="{{img_url feature_image size=" s"}}" alt="" />
+                        <img class="w-full h-full object-cover" src="{{img_url feature_image size="s"}}" alt="" />
                     </span>
                     <span>
                         <span class="text-xs">Älterer Post</span>

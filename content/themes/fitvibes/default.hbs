@@ -24,8 +24,8 @@
 
 <body class="{{body_class}}">
 
-    {{#is 'home, page'}}
-        <div class="h-[45vh] opacity-20 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
+    {{#is 'home, page, author'}}
+        <div class="h-[45vh] opacity-30 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
             {{#if @site.cover_image}}
                 <img class="w-full h-full object-cover" src="{{@site.cover_image}}" alt="{{@site.title}} Cover">
                 {{> picture src=@site.cover_image alt=@site.title sizes="(min-width: 1536px) 1536px, (min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw" loading="eager" }}

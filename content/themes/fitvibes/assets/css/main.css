@@ -62,7 +62,7 @@
 }
 
 html, body {
-    @apply text-neutral-600 antialiased dark:bg-neutral-900 dark:text-neutral-300 scroll-smooth
+    @apply text-neutral-600 antialiased dark:bg-neutral-900 dark:text-neutral-200 scroll-smooth
 }
 
 .post-content h1,
@@ -80,8 +80,17 @@ html, body {
     @apply text-3xl
 }
 
+.post-content p > a {
+    @apply font-bold text-black dark:text-white underline underline-offset-4 hover:no-underline
+}
+
+.post-content b,
+.post-content strong {
+    @apply font-bold text-black dark:text-white
+}
+
 .post-content p {
-    @apply text-neutral-800 text-lg leading-relaxed dark:text-neutral-300
+    @apply text-neutral-800 text-lg leading-relaxed dark:text-neutral-200
 }
 
 .post-content img {
@@ -107,7 +116,7 @@ html, body {
 .post-content hr,
 .post-content hr::before,
 .post-content hr::after {
-    @apply inline-block size-1.5 border-0 bg-neutral-300 rounded-full dark:bg-white overflow-visible;
+    @apply inline-block size-1.5 border-0 bg-neutral-200 rounded-full dark:bg-neutral-700! overflow-visible;
 }
 
 .post-content hr::before,
@@ -116,7 +125,7 @@ html, body {
 }
 
 .post-content hr::before {
-    @apply -left-6 dark:bg-white!;
+    @apply -left-6;
 }
 
 .post-content hr::after {
