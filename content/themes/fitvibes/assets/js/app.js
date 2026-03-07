@@ -75,3 +75,79 @@ import '../css/main.css';
     });
 })();
 
+// Web Share API - Native Share on Mobile
+(function () {
+    const webShareButton = document.querySelector('[data-web-share]');
+
+    if (webShareButton && navigator.share) {
+        // Show the native share button if Web Share API is supported
+        webShareButton.classList.remove('hidden');
+        webShareButton.classList.add('inline-flex');
+
+        webShareButton.addEventListener('click', async function () {
+            const title = this.getAttribute('data-title');
+            const text = this.getAttribute('data-text');
+            const url = this.getAttribute('data-url');
+
+            try {
+                await navigator.share({
+                    title: title,
+                    text: text,
+                    url: url
+                });
+            } catch (err) {
+                // User cancelled or error occurred
+                if (err.name !== 'AbortError') {
+                    console.error('Error sharing:', err);
+                }
+            }
+        });
+    }
+})();
+
+// Social Share - Copy Link Functionality
+(function () {
+    const copyButtons = document.querySelectorAll('[data-share-copy]');
+
+    copyButtons.forEach(button => {
+        button.addEventListener('click', async function () {
+            const url = this.getAttribute('data-url');
+            const textElement = this.querySelector('[data-share-copy-text]');
+            const originalText = textElement.textContent;
+
+            try {
+                await navigator.clipboard.writeText(url);
+                textElement.textContent = 'Kopiert!';
+
+                setTimeout(() => {
+                    textElement.textContent = originalText;
+                }, 2000);
+            } catch (err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+
+                try {
+                    document.execCommand('copy');
+                    textElement.textContent = 'Kopiert!';
+
+                    setTimeout(() => {
+                        textElement.textContent = originalText;
+                    }, 2000);
+                } catch (err) {
+                    textElement.textContent = 'Fehler!';
+
+                    setTimeout(() => {
+                        textElement.textContent = originalText;
+                    }, 2000);
+                }
+
+                document.body.removeChild(textArea);
+            }
+        });
+    });
+})();
