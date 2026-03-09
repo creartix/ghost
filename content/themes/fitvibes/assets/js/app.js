@@ -73,6 +73,7 @@ import '../css/main.css';
             applyTheme('system');
         }
     });
+
 })();
 
 // Web Share API - Native Share on Mobile

@@ -38,10 +38,10 @@
                                 <img src="{{img_url profile_image size="xs"}}" alt="{{name}}" class="size-12 rounded-full object-cover" />
                             </a>
                         {{else}}
-                            <a href="{{url}}" class="shrink-0">
+                            <a href="{{url}}" class="shrink-0" title="{{name}}">
                                 <div
-                                    class="bg-neutral-100 size-12 flex justify-center items-center font-semibold text-sm rounded-full dark:bg-neutral-700 dark:text-white">
-                                    {{#if name}}{{substring name 0 2}}{{else}}??{{/if}}
+                                    class="bg-neutral-100 size-12 flex justify-center items-center font-semibold text-xs rounded-full dark:bg-neutral-700 dark:text-white overflow-hidden px-1">
+                                    <span class="truncate">{{name}}</span>
                                 </div>
                             </a>
                         {{/if}}
@@ -76,7 +76,7 @@
 
         <div class="gh-content grid grid-cols-1 md:grid-cols-12 gap-16 max-w-6xl mx-auto">
 
-            <div class="order-2 md:order-1 text-lg post-content md:col-span-8">
+            <div class="text-lg post-content md:col-span-7 lg:col-span-8">
 
                 {{content}}
 
@@ -87,16 +87,16 @@
                 </div>
                 <div class="p-8 bg-neutral-200 rounded-2xl dark:bg-neutral-800">
                     {{#has visibility="paid"}}
-                        <h3 class="font-headline text-2xl font-bold text-black mb-4 dark:text-white">
+                        <div class="font-headline text-2xl font-bold text-black mb-4 dark:text-white">
                             Exklusiver Premium-Inhalt
-                        </h3>
+                        </div>
                         <p class="text-neutral-700 mb-4! text-base! dark:text-neutral-300">
                             Dieser Artikel enthält exklusive Inhalte, die nur für unsere <strong>zahlenden Premium-Mitglieder</strong> verfügbar sind.
                         </p>
                     {{else}}
-                        <h3 class="font-headline text-2xl font-bold text-black mb-4 dark:text-white">
+                        <div class="font-headline text-2xl font-bold text-black mb-4 dark:text-white">
                             Mitglieder-Inhalt
-                        </h3>
+                        </div>
                         <p class="text-neutral-700 mb-4! text-base! dark:text-neutral-300">
                             Dieser Artikel ist nur für <strong>registrierte Mitglieder</strong> verfügbar. Melde dich kostenlos an!
                         </p>
@@ -118,13 +118,13 @@
                 </div>
                 {{/unless}}
 
-                {{> "shareArticle" }}
+                {{> "shareArticle" hideLabel=true }}
 
             </div>
 
-            <div class="order-1 md:order-2 md:col-span-4 md:sticky md:top-10 self-start">
+            <div class="md:col-span-5 lg:col-span-4 md:sticky md:top-10 self-start">
 
-                <div class="gh-toc">
+                <div class="hidden md:block gh-toc">
                     <strong class="mb-2.5 block text-base text-black dark:text-white">Inhalt</strong>
                     <a href="#intro" class="block py-1.5 text-sm">Einleitung</a>
                     <div class="toc"></div>
@@ -132,9 +132,9 @@
 
                 <div class="mt-12 p-8 bg-emerald-100 rounded-2xl text-white dark:bg-emerald-900">
                     <div class="mb-2 text-neutral-400 dark:text-neutral-400 text-xs uppercase">Newsletter</div>
-                    <h3 class="font-headline text-3xl font-bold mb-3 text-black dark:text-white">
+                    <div class="font-headline text-3xl font-bold mb-3 text-black dark:text-white">
                         Bleib auf dem Laufenden!
-                    </h3>
+                    </div>
                     <p class="mb-6 text-sm text-black dark:text-neutral-400">
                         Erhalte die neuesten Fitness-Tipps, Ernährungsguides und exklusive Inhalte direkt in dein Postfach.
                     </p>
@@ -161,9 +161,9 @@
 
         <div class="max-w-6xl mx-auto">
             {{#if comments}}
-            <section class="bg-neutral-50 mt-24 p-16 rounded-2xl">
-                {{comments title="Kommentare" count=true mode="light"}}
-            </section>
+                <section id="ghost-comments-section" class="bg-neutral-50 mt-24 p-16 rounded-2xl dark:bg-neutral-800">
+                    {{comments title="Kommentare" count=true mode="auto"}}
+                </section>
             {{/if}}
         </div>
 

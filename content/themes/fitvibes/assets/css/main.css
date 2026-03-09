@@ -50,9 +50,7 @@
 
 @theme {
     --font-family-headline: "Fraunces", "serif";
-
     --spacing-8xl: 1340px;
-
     --aspect-ratio-article: 4 / 2.5;
 }
 
@@ -188,8 +186,36 @@ html, body {
     @apply bg-black! h-auto! text-white! font-semibold! rounded-full! px-6! py-4! hover:bg-neutral-800 transition duration-300;
 }
 
+.kg-card a {
+    @apply font-bold text-black dark:text-white underline underline-offset-4 hover:no-underline
+}
+
 .kg-callout-card {
-    @apply rounded-2xl mb-8
+    @apply rounded-2xl mb-8 border-4 border-white shadow
+}
+
+.kg-callout-card.kg-callout-card-green {
+    @apply bg-gradient-to-b from-[#34b7431f] to-white
+}
+
+.kg-callout-card.kg-callout-card-blue {
+    @apply bg-gradient-to-b from-[#21ace81f] to-white
+}
+
+.kg-callout-card.kg-callout-card-yellow {
+    @apply bg-gradient-to-b from-[#f0a50f21] to-white
+}
+
+.kg-callout-card.kg-callout-card-red {
+    @apply bg-gradient-to-b from-[#d12e2e1c] to-white
+}
+
+.kg-callout-card.kg-callout-card-accent {
+    @apply bg-gradient-to-b from-[#006045] to-white
+}
+
+.kg-callout-card div.kg-callout-emoji {
+    font-size: 1.5em;
 }
 
 .kg-embed-card iframe {
@@ -226,6 +252,7 @@ html, body {
 .toc-list .toc-list-item a:before {
     @apply hidden
 }
+
 
 /* Hide Ghost's default paid content notice */
 .gh-post-upgrade-cta {
