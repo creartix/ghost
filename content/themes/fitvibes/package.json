@@ -10,9 +10,9 @@
         "desktop": "assets/screenshot-desktop.jpg"
     },
     "scripts": {
-        "dev": "concurrently \"vite\" \"yarn watch:ghost\"",
-        "watch:ghost": "browser-sync start --proxy localhost:2368 --files '**/*.hbs' --no-open --no-notify",
-        "build": "vite build"
+        "dev": "vite build --watch --mode development",
+        "build": "vite build",
+        "watch": "vite build --watch"
     },
     "author": {
         "name": "Fitvibes",

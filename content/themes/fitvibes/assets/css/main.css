@@ -108,18 +108,13 @@ html, body {
 }
 
 .post-content hr {
-    @apply mt-8 mb-16 relative left-1/2 transform -translate-x-1/2;
-}
-
-.post-content hr,
-.post-content hr::before,
-.post-content hr::after {
-    @apply inline-block size-1.5 border-0 bg-neutral-200 rounded-full dark:bg-neutral-700! overflow-visible;
+    @apply mt-8 mb-16 relative left-1/2 -translate-x-1/2 inline-block size-1.5 border-0 rounded-full bg-neutral-300 overflow-visible;
 }
 
 .post-content hr::before,
 .post-content hr::after {
-    @apply content-[""] absolute;
+    content: "";
+    @apply absolute inline-block size-1.5 rounded-full bg-neutral-300;
 }
 
 .post-content hr::before {
@@ -128,6 +123,16 @@ html, body {
 
 .post-content hr::after {
     @apply left-6;
+}
+
+/* dark mode separat */
+.dark .post-content hr {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.dark .post-content hr::before,
+.dark .post-content hr::after {
+    background-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .kg-width-full {
@@ -195,19 +200,19 @@ html, body {
 }
 
 .kg-callout-card.kg-callout-card-green {
-    @apply bg-gradient-to-b from-[#34b7431f] to-white
+    @apply bg-gradient-to-b from-[#34b7431f] to-white dark:bg-none dark:border dark:bg-green-500/10 dark:border-green-500/20 dark:text-green-400
 }
 
 .kg-callout-card.kg-callout-card-blue {
-    @apply bg-gradient-to-b from-[#21ace81f] to-white
+    @apply bg-gradient-to-b from-[#21ace81f] to-white dark:bg-none dark:border dark:bg-blue-500/10 dark:border-blue-500/20 dark:text-blue-400
 }
 
 .kg-callout-card.kg-callout-card-yellow {
-    @apply bg-gradient-to-b from-[#f0a50f21] to-white
+    @apply bg-gradient-to-b from-[#f0a50f21] to-white dark:bg-none dark:border dark:bg-yellow-500/10 dark:border-yellow-500/20 dark:text-yellow-400
 }
 
 .kg-callout-card.kg-callout-card-red {
-    @apply bg-gradient-to-b from-[#d12e2e1c] to-white
+    @apply bg-gradient-to-b from-[#d12e2e1c] to-white dark:bg-none dark:border dark:bg-red-500/10 dark:border-red-500/20 dark:text-red-400
 }
 
 .kg-callout-card.kg-callout-card-accent {

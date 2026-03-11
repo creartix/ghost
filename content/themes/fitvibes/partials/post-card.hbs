@@ -2,10 +2,10 @@
 Re-usable card for linking to posts
 --}}
 
-<article class="group/article flex items-start gap-4 @xl:gap-0 @xl:flex-col {{post_class}}">
+<article class="group/article flex items-start gap-4 flex-col {{post_class}}">
 
   {{#if feature_image}}
-    <a class="w-1/3 block relative aspect-article shrink-0 rounded-3xl overflow-hidden group-hover/article:-translate-y-1.5 transition ease duration-400 @xl:mb-4 @xl:w-full" href="{{url}}">
+    <a class="block relative aspect-article shrink-0 rounded-3xl overflow-hidden group-hover/article:-translate-y-1.5 transition ease duration-400 mb-4 w-full" href="{{url}}">
 
       {{#if featured}}
         <span class="bg-yellow-500 px-3.5 py-2.5 text-white text-xs font-semibold absolute top-3 left-3 z-10 rounded-full">Featured</span>
@@ -61,7 +61,7 @@ Re-usable card for linking to posts
     </a>
   {{/if}}
 
-  <div class="@xl:pr-6 space-y-2">
+  <div class="space-y-2">
 
     {{#if tags}}
       <div class="flex flex-wrap gap-2">
@@ -71,11 +71,11 @@ Re-usable card for linking to posts
       </div>
     {{/if}}
 
-    <a href="{{url}}" class="block font-headline font-semibold text-black text-xl hover:underline hover:underline-offset-4 @lg:text-xl @xl:text-3xl dark:text-white">
+    <a href="{{url}}" class="block font-headline font-semibold text-black hover:underline hover:underline-offset-4 text-2xl md:text-3xl dark:text-white">
       <h3>{{title}}</h3>
     </a>
 
-    <p class="line-clamp-3 @xl:line-clamp-none">{{excerpt}}</p>
+    <p>{{excerpt}}</p>
 
     <div class="text-sm dark:text-neutral-500">
       <time datetime="{{date format=" DD.MM.YYYY"}}">

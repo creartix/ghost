@@ -6,13 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{#match @site.url pattern="localhost"}}
-        <script type="module" src="http://localhost:3000/@vite/client"></script>
-        <link rel="stylesheet" href="http://localhost:3000/assets/css/main.css">
-        <script type="module" src="http://localhost:3000/assets/js/app.js"></script>
-    {{else}}
-        <link rel="stylesheet" href="{{asset "built/main.css"}}">
-    {{/match}}
+    <link rel="stylesheet" href="{{asset "built/main.css"}}">
+    <script type="module" src="{{asset "built/app.js"}}"></script>
 
     <title>{{meta_title}}</title>
 
@@ -175,12 +170,12 @@
 
     <div class="bg-neutral-100 p-6 text-sm dark:bg-neutral-900/70">
         <div class="mx-auto max-w-8xl">
-            <div class="flex items-center justify-between">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-3">
                 <div class="dark:text-neutral-400">
                     &copy; {{date format="YYYY"}} {{@site.title}}, Inc. All rights reserved.
                 </div>
                 <div class="flex items-center space-x-4">
-                    <a href="/" class="text-neutral-700 hover:text-black">Cookie-Einstellungen</a>
+                    <a href="/" class="text-neutral-700 hover:text-black dark:text-neutral-400">Cookie-Einstellungen</a>
                 </div>
             </div>
         </div>
