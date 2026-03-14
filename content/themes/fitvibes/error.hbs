@@ -1,11 +1,14 @@
 {{!< default}}
 
-<div class="h-[45vh] opacity-30 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
+<div class="h-[50vh] opacity-30 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
     {{#if @site.cover_image}}
         <img class="w-full h-full object-cover" src="{{@site.cover_image}}" alt="{{@site.title}} Cover">
         {{> picture src=@site.cover_image alt=@site.title sizes="(min-width: 1536px) 1536px, (min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw" loading="eager" }}
     {{else}}
-        <img class="w-full h-full object-cover" src="{{asset "images/hero.jpg"}}" alt="hero">
+        <img class="md:hidden w-full h-full object-cover" src="{{asset "images/hero-poster.jpg"}}" alt="Hero">
+        <video class="hidden md:block w-full h-full object-cover" poster="{{asset "images/hero-poster.jpg"}}" autoplay muted loop playsinline>
+            <source src="{{asset "video/hero-video.mp4"}}" type="video/mp4">
+        </video>
     {{/if}}
 </div>
 
@@ -43,7 +46,7 @@
 
         </div>
 
-        {{#get "posts" limit="3"}}
+        {{#get "posts" limit="9"}}
             <section class="py-16">
                 <h2 class="mb-4 font-medium uppercase text-xs">Kürzliche Beiträge</h2>
                 <div class="@container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">

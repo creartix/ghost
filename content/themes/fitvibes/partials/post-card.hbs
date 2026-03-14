@@ -5,7 +5,7 @@ Re-usable card for linking to posts
 <article class="group/article flex items-start gap-4 flex-col {{post_class}}">
 
   {{#if feature_image}}
-    <a class="block relative aspect-article shrink-0 rounded-3xl overflow-hidden group-hover/article:-translate-y-1.5 transition ease duration-400 mb-4 w-full" href="{{url}}">
+    <a class="block relative aspect-article shrink-0 rounded-3xl overflow-hidden group-hover/article:-translate-y-1.5 transition ease duration-400 w-full" href="{{url}}">
 
       {{#if featured}}
         <span class="bg-yellow-500 px-3.5 py-2.5 text-white text-xs inline-flex items-center gap-2 font-semibold absolute top-3 left-3 z-10 rounded-full">
@@ -75,7 +75,7 @@ Re-usable card for linking to posts
       </div>
     {{/if}}
 
-    <a href="{{url}}" class="block font-headline font-semibold text-black hover:underline hover:underline-offset-4 text-2xl md:text-3xl dark:text-white">
+    <a href="{{url}}" class="block font-headline font-semibold text-black hover:underline hover:underline-offset-4 text-3xl dark:text-white">
       <h3>{{title}}</h3>
     </a>
 
