@@ -52,6 +52,7 @@
     --font-family-headline: "Fraunces", "serif";
     --spacing-8xl: 1340px;
     --aspect-ratio-article: 4 / 2.5;
+    --color-primary: oklch(0.43 0.09 165.86);
 }
 
 :root {
@@ -196,7 +197,7 @@ html, body {
 }
 
 .kg-callout-card {
-    @apply rounded-2xl mb-8 border-4 border-white shadow
+    @apply rounded-2xl! mb-8 border-4 border-white shadow
 }
 
 .kg-callout-card.kg-callout-card-green {

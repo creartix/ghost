@@ -152,3 +152,27 @@ import '../css/main.css';
         });
     });
 })();
+
+// External Links - open in new tab with security attributes
+(function () {
+    function processExternalLinks() {
+        const host = window.location.host;
+        document.querySelectorAll('.gh-content a[href]').forEach(link => {
+            try {
+                const url = new URL(link.href);
+                if (url.host && url.host !== host) {
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener noreferrer');
+                }
+            } catch (e) {
+                // ignore relative or invalid URLs
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', processExternalLinks);
+    } else {
+        processExternalLinks();
+    }
+})();
