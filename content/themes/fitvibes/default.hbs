@@ -46,61 +46,59 @@
                         <div class="text-2xl text-black font-bold dark:text-white">{{@site.title}}</div>
                     {{/if}}
                 </a>
-                {{navigation}}
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button id="menu-toggle" class="md:hidden text-neutral-700">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
+            <div id="mobile-nav" class="bg-white w-full sm:w-80 fixed top-0 right-0 bottom-0 z-1000 shadow-2xl dark:bg-neutral-800">
+                <div class="min-h-full flex flex-col justify-between p-8">
+                    {{navigation}}
+                    <div>
+                        {{#if @site.members_enabled}}
+                            {{^if @member}}
+                                <a class="font-semibold" href="{{@site.signup_url}}">Anmelden</a>
+                            {{else}}
+                                <a class="gh-button" href="#/portal/account">Account</a>
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
 
-            <div class="flex gap-4 items-center">
+            <div class="flex gap-5 items-center">
 
                 {{search}}
 
-                {{#if @site.members_enabled}}
-                    {{^if @member}}
-                        <a class="font-semibold" href="{{@site.signup_url}}">Anmelden</a>
-                    {{else}}
-                        <a class="gh-button" href="#/portal/account">Account</a>
-                    {{/if}}
-                {{/if}}
-
-                <button id="themeCycleBtn"
-                    class="relative p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300 group"
-                    aria-label="Theme wechseln">
-                    <!-- Light Icon -->
+                <button
+                    id="themeCycleBtn"
+                    class="size-8 relative rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300 group"
+                    aria-label="Theme wechseln"
+                >
                     <svg id="iconLight" class="w-6 h-6 absolute inset-0 m-auto transition-all duration-300 opacity-0 scale-0"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
-
-                    <!-- Dark Icon -->
                     <svg id="iconDark" class="w-6 h-6 absolute inset-0 m-auto transition-all duration-300 opacity-0 scale-0" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
-
-                    <!-- System Icon -->
                     <svg id="iconSystem" class="w-6 h-6 absolute inset-0 m-auto transition-all duration-300 opacity-0 scale-0"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-
-                    <!-- Platzhalter für Button-Größe -->
-                    <div class="w-6 h-6"></div>
-
-                    <!-- Tooltip -->
                     <span
-                        class="absolute top-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium text-white bg-neutral-900 dark:bg-neutral-700 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                        class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 text-xs font-medium text-white bg-neutral-900 dark:bg-neutral-700 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                         <span id="tooltipText">System</span>
                     </span>
                 </button>
+
+                <button id="menu-toggle" class="cursor-pointer text-neutral-700 dark:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
             </div>
 
         </div>
@@ -125,7 +123,7 @@
                         <h2 class="text-2xl text-black font-bold dark:text-white">{{@site.title}}</h2>
                     {{/if}}
                     <p class="text-sm/6 text-balance text-neutral-600 dark:text-neutral-400">
-                        Making the world a better place through constructing elegant hierarchies.
+                        {{@site.description}}
                     </p>
                 </div>
 
@@ -135,9 +133,13 @@
                         <h3 class="font-semibold text-neutral-900 dark:text-white">Kategorien</h3>
                         <ul class="mt-2 space-y-1">
                             {{#get "tags" limit="15"}}
-                            {{#foreach tags}}
-                            <li><a href="{{url}}" class="text-neutral-700 text-sm hover:text-black dark:text-neutral-400 dark:hover:text-white">{{name}}</a></li>
-                            {{/foreach}}
+                                {{#foreach tags}}
+                                    <li>
+                                        <a href="{{url}}" class="text-neutral-700 text-sm hover:text-black dark:text-neutral-400 dark:hover:text-white">
+                                            {{name}}
+                                        </a>
+                                    </li>
+                                {{/foreach}}
                             {{/get}}
                         </ul>
                     </div>
@@ -184,6 +186,8 @@
         </div>
     </div>
 
+    <div id="overlay" class="absolute inset-0 bg-black/40 z-900 backdrop-blur-[2px]"></div>
+
     {{#is "post"}}
         <script>
             const progressBar = document.querySelector('.reading-progress');
@@ -207,6 +211,25 @@
             contentSelector: '.gh-content',
             headingSelector: 'h1, h2, h3, h4',
             hasInnerContainers: true,
+        });
+    </script>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const overlay = document.getElementById('overlay');
+
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+            overlay.classList.toggle('open');
+        });
+
+        // Schließen bei Klick außerhalb
+        document.addEventListener('click', (e) => {
+            if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
+                mobileNav.classList.remove('open');
+                overlay.classList.remove('open');
+            }
         });
     </script>
 

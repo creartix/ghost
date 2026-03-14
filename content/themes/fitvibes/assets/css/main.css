@@ -64,6 +64,28 @@ html, body {
     @apply text-neutral-600 antialiased dark:bg-neutral-900 dark:text-neutral-200 scroll-smooth
 }
 
+#mobile-nav {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all .3s ease-in-out;
+}
+
+#mobile-nav.open {
+    opacity: 100;
+    transform: translateX(0);
+}
+
+#overlay {
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease-in-out;
+}
+
+#overlay.open {
+    opacity: 100;
+    visibility: visible;
+}
+
 .post-content h1,
 .post-content h2,
 .post-content h3,
