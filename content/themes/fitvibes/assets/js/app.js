@@ -52,6 +52,21 @@ import '../css/main.css';
 
         tooltipText.textContent = labels[theme];
         button.setAttribute('aria-label', `Theme: ${labels[theme]}`);
+
+        // Update Ghost comments color scheme by re-injecting the script with new data-color-scheme
+        const commentsWrapper = document.getElementById('comments-wrapper');
+        const commentsScript = document.querySelector('script[data-ghost-comments]');
+        if (commentsWrapper && commentsScript) {
+            const isDark = html.classList.contains('dark');
+            const newScript = document.createElement('script');
+            // Copy all attributes, override color scheme
+            Array.from(commentsScript.attributes).forEach(attr => {
+                newScript.setAttribute(attr.name, attr.value);
+            });
+            newScript.setAttribute('data-color-scheme', isDark ? 'dark' : 'light');
+            commentsWrapper.innerHTML = '';
+            commentsWrapper.appendChild(newScript);
+        }
     }
 
     function cycleTheme() {
