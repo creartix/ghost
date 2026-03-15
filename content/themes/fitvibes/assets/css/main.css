@@ -270,11 +270,11 @@ html, body {
 }
 
 .toc-list {
-    @apply list-none p-0 m-0
+    @apply list-none p-0 m-0 pl-4! space-y-2
 }
 
 .toc-list li.toc-list-item a.toc-link {
-    @apply py-1.5! text-sm!
+    @apply py-2.5! text-sm! hover:text-black dark:hover:text-white
 }
 
 .toc-list li.toc-list-item a.is-active-link {
