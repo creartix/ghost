@@ -49,8 +49,23 @@
             </div>
 
             <div id="mobile-nav" class="bg-white w-full sm:w-80 fixed top-0 right-0 bottom-0 z-1000 shadow-2xl dark:bg-neutral-800">
+
                 <div class="min-h-full flex flex-col justify-between p-8">
-                    {{navigation}}
+
+                    <div class="flex flex-col gap-8">
+                        <div class="flex items-center justify-between gap-4">
+                            <div class="text-2xl text-black font-bold dark:text-white">{{@site.title}}</div>
+                            <button tpe="button" class="cursor-pointer fill-black dark:fill-white" id="close-mobile-nav">
+                                <svg class="w-6 h-auto" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512"
+                                    height="512">
+                                    <path
+                                        d="M18,6h0a1,1,0,0,0-1.414,0L12,10.586,7.414,6A1,1,0,0,0,6,6H6A1,1,0,0,0,6,7.414L10.586,12,6,16.586A1,1,0,0,0,6,18H6a1,1,0,0,0,1.414,0L12,13.414,16.586,18A1,1,0,0,0,18,18h0a1,1,0,0,0,0-1.414L13.414,12,18,7.414A1,1,0,0,0,18,6Z" />
+                                </svg>
+                            </button>
+                        </div>
+                        {{navigation}}
+                    </div>
+
                     <div>
                         {{#if @site.members_enabled}}
                             {{^if @member}}
@@ -217,11 +232,17 @@
     <script>
         const menuToggle = document.getElementById('menu-toggle');
         const mobileNav = document.getElementById('mobile-nav');
+        const closeMobileNav = document.getElementById('close-mobile-nav');
         const overlay = document.getElementById('overlay');
 
         menuToggle.addEventListener('click', () => {
             mobileNav.classList.toggle('open');
             overlay.classList.toggle('open');
+        });
+
+        closeMobileNav.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            overlay.classList.remove('open');
         });
 
         // Schließen bei Klick außerhalb
