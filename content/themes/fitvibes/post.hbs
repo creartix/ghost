@@ -1,212 +1,239 @@
-{{!< default}} <progress class="reading-progress" value="0" max="100" aria-label="Reading progress"></progress>
+{{!< default}}
+
+    <progress class="reading-progress" value="0" max="100" aria-label="Reading progress"></progress>
 
     {{#tag}}
-    <div
-        class="h-[50vh] opacity-30 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
-        <img class="w-full h-full object-cover" src="{{img_url feature_image size="m"}}" alt="{{primary_tag.name}}">
-    </div>
+        <div
+            class="h-[50vh] opacity-30 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
+            <img class="w-full h-full object-cover" src="{{img_url feature_image size="m"}}" alt="{{primary_tag.name}}">
+        </div>
     {{/tag}}
 
     {{#post}}
-    <article id="intro" class="mt-12 mb-4 px-8 {{post_class}}">
+        <article id="intro" class="mt-12 mb-4 {{post_class}}">
 
-        <header class="max-w-5xl mx-auto space-y-10">
+            <header class="max-w-5xl mx-auto px-8 space-y-10">
 
-            <h1 class="font-headline text-black font-bold text-4xl md:text-6xl dark:text-white">{{title}}</h1>
+                <h1 class="font-headline text-black font-bold text-4xl md:text-6xl dark:text-white">{{title}}</h1>
 
-            {{#if custom_excerpt}}
-                <p class="text-xl text-black dark:text-neutral-200">{{custom_excerpt}}</p>
-            {{/if}}
+                {{#if custom_excerpt}}
+                    <p class="text-xl text-black dark:text-neutral-200">{{custom_excerpt}}</p>
+                {{/if}}
 
-            {{#if tags}}
-                <div class="flex flex-wrap gap-3">
-                    {{#foreach tags}}
-                    <a href="{{url}}"
-                        class="text-sm px-3 py-1.5 rounded-full bg-neutral-100 font-semibold text-neutral-600 hover:bg-neutral-200 hover:text-neutral-800 transition ease duration-300 dark:bg-neutral-600 dark:text-neutral-100 active:scale-[.98]">
-                        {{name}}
-                    </a>
-                    {{/foreach}}
-                </div>
-                <hr class="border-neutral-300 dark:border-neutral-700" />
-            {{/if}}
+                <div class="flex items-center gap-4">
 
-            {{#if authors}}
-                <div class="flex items-center gap-3">
-                    {{#foreach authors}}
-                        {{#if profile_image}}
-                            <a href="{{url}}" class="shrink-0">
-                                <img src="{{img_url profile_image size="xs"}}" alt="{{name}}" class="size-12 rounded-full object-cover" />
+                    {{#if featured}}
+                        <span class="bg-yellow-500 px-3 py-2 text-white text-xs inline-flex items-center gap-2 font-semibold rounded-full">
+                            <svg class="w-4 h-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                                id="Outline" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                                xml:space="preserve" width="512" height="512">
+                                <path fill="#ffffff"
+                                    d="M354.773,61.867c-16.789-14.229-34.389-29.184-52.309-45.483C288.717,3.882,270.151-1.912,251.733,0.555  c-17.848,2.358-33.728,12.517-43.349,27.733c-25.43,42.496-43.41,89.025-53.163,137.579c-3.827-5.526-7.222-11.338-10.155-17.387  c-10.104-21.288-35.552-30.355-56.84-20.251c-5.154,2.446-9.765,5.901-13.56,10.16c-35.783,36.566-55.62,85.821-55.168,136.981  c-1.017,107.532,71.314,201.943,175.403,228.95c19.367,4.873,39.251,7.394,59.221,7.509c0.64,0,7.445-0.064,10.197-0.256  c127.36-4.125,228.426-108.648,228.267-236.075C492.501,178.859,428.672,124.672,354.773,61.867z M253.589,469.013  c-15.877-1.208-31.567-7.639-43.413-17.195c-18.55-13.126-30.825-32.374-33.749-54.549c-3.627-34.603,17.707-79.851,61.291-130.965  l0,0c4.57-5.338,11.256-8.397,18.283-8.363l0,0c6.936-0.05,13.532,3.001,17.984,8.32c39.936,47.403,61.867,91.136,61.867,123.157  c-0.123,42.07-33.006,75.35-74.88,79.403C259.133,468.999,256,469.269,253.589,469.013z M374.955,428.437  c-1.259,0.981-2.645,1.771-3.925,2.709c4.922-13.378,7.457-27.516,7.488-41.771c0-53.909-39.147-111.68-71.957-150.656  c-12.553-14.867-31.017-23.451-50.475-23.467H256c-19.497-0.035-38.028,8.49-50.688,23.317l0,0  c-52.16,61.099-76.117,115.989-71.211,163.157c1.165,10.95,3.962,21.664,8.299,31.787c-50.658-36.706-80.507-95.587-80.171-158.144  c-0.412-40.639,15.614-79.721,44.437-108.373c4.921,10.23,10.83,19.954,17.643,29.035c9.357,12.65,25.342,18.52,40.661,14.933  c15.619-3.455,27.746-15.774,30.955-31.445c8.571-45.304,24.95-88.774,48.405-128.469c2.886-4.538,7.653-7.544,12.992-8.192  c5.967-0.803,11.982,1.08,16.427,5.141c18.304,16.64,36.267,32,53.333,46.443c71.211,60.48,122.688,104.171,122.688,181.056  c0.184,59.833-27.436,116.358-74.752,152.981L374.955,428.437z" />
+                            </svg>
+                            Featured
+                        </span>
+                    {{/if}}
+
+                    {{#if tags}}
+
+                        <div class="flex flex-wrap gap-3">
+                            {{#foreach tags}}
+                            <a href="{{url}}"
+                                class="text-sm px-3 py-1.5 rounded-full bg-neutral-100 font-semibold text-neutral-600 hover:bg-neutral-200 hover:text-neutral-800 transition ease duration-300 dark:bg-neutral-600 dark:text-neutral-100 active:scale-[.98]">
+                                {{name}}
                             </a>
-                        {{else}}
-                            <a href="{{url}}" class="shrink-0" title="{{name}}">
-                                <div
-                                    class="bg-neutral-100 size-12 flex justify-center items-center font-semibold text-xs rounded-full dark:bg-neutral-700 dark:text-white overflow-hidden px-1">
-                                    <span class="truncate">{{name}}</span>
-                                </div>
-                            </a>
-                        {{/if}}
-                    {{/foreach}}
-                    <div class="text-sm text-neutral-800 dark:text-neutral-300">
-                        <div class="font-medium">
-                            {{#foreach authors}}
-                            <a href="{{url}}" class="hover:text-black dark:hover:text-white">{{name}}</a>{{#unless @last}}, {{/unless}}
                             {{/foreach}}
                         </div>
-                        <div class="text-neutral-600 dark:text-neutral-400">
-                            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
-                            <span class="mx-0.5">·</span>
-                            {{reading_time minute="1 Minute" minutes="% Minuten"}}
+
+                        <hr class="border-neutral-300 dark:border-neutral-700" />
+
+                    {{/if}}
+
+                </div>
+
+                {{#if authors}}
+                    <div class="flex items-center gap-3">
+                        {{#foreach authors}}
+                            {{#if profile_image}}
+                                <a href="{{url}}" class="shrink-0">
+                                    <img src="{{img_url profile_image size="xs"}}" alt="{{name}}" class="size-12 rounded-full object-cover" />
+                                </a>
+                            {{else}}
+                                <a href="{{url}}" class="shrink-0" title="{{name}}">
+                                    <div
+                                        class="bg-neutral-100 size-12 flex justify-center items-center font-semibold text-xs rounded-full dark:bg-neutral-700 dark:text-white overflow-hidden px-1">
+                                        <span class="truncate">{{name}}</span>
+                                    </div>
+                                </a>
+                            {{/if}}
+                        {{/foreach}}
+                        <div class="text-sm text-neutral-800 dark:text-neutral-300">
+                            <div class="font-medium">
+                                {{#foreach authors}}
+                                <a href="{{url}}" class="hover:text-black dark:hover:text-white">{{name}}</a>{{#unless @last}}, {{/unless}}
+                                {{/foreach}}
+                            </div>
+                            <div class="text-neutral-600 dark:text-neutral-400">
+                                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                                <span class="mx-0.5">·</span>
+                                {{reading_time minute="1 Minute" minutes="% Minuten"}}
+                            </div>
                         </div>
                     </div>
-                </div>
+                {{/if}}
+
+            </header>
+
+            {{#if feature_image}}
+                <figure class="max-w-7xl mx-auto my-10 md:px-8">
+                    {{> picture src=feature_image alt=feature_image_alt sizes="(min-width: 1200px) 1200px, 100vw" class="aspect-video block w-full md:rounded-2xl overflow-hidden" width="1200" height="630" }}
+                    {{#if feature_image_caption}}
+                        <figcaption class="text-xs mt-2">
+                            {{feature_image_caption}}
+                        </figcaption>
+                    {{/if}}
+                </figure>
             {{/if}}
 
-        </header>
+            <div class="gh-content grid grid-cols-1 md:grid-cols-12 gap-16 max-w-6xl mx-auto px-8">
 
-        {{#if feature_image}}
-        <figure class="max-w-7xl mx-auto my-10">
-            {{> picture src=feature_image alt=feature_image_alt sizes="(min-width: 1200px) 1200px, 100vw" class="aspect-video block w-full rounded-2xl overflow-hidden" width="1200" height="630" }}
-            {{#if feature_image_caption}}
-            <figcaption class="text-xs mt-2">
-                {{feature_image_caption}}
-            </figcaption>
-            {{/if}}
-        </figure>
-        {{/if}}
+                <div class="text-lg post-content md:col-span-7 lg:col-span-8">
 
-        <div class="gh-content grid grid-cols-1 md:grid-cols-12 gap-16 max-w-6xl mx-auto">
+                    {{content}}
 
-            <div class="text-lg post-content md:col-span-7 lg:col-span-8">
+                    {{#unless access}}
 
-                {{content}}
-
-                {{#unless access}}
-                <div class="relative">
-                    <div class="absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-white to-transparent dark:from-neutral-900">
-                    </div>
-                </div>
-                <div class="p-8 bg-neutral-200 rounded-2xl dark:bg-neutral-800">
-                    {{#has visibility="paid"}}
-                        <div class="font-headline text-2xl font-bold text-black mb-4 dark:text-white">
-                            Exklusiver Premium-Inhalt
+                        <div class="relative">
+                            <div class="absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-white to-transparent dark:from-neutral-900">
+                            </div>
                         </div>
-                        <p class="text-neutral-700 mb-4! text-base! dark:text-neutral-300">
-                            Dieser Artikel enthält exklusive Inhalte, die nur für unsere <strong>zahlenden Premium-Mitglieder</strong> verfügbar sind.
+
+                        <div class="p-8 bg-neutral-100 rounded-2xl dark:bg-neutral-800">
+                            {{#has visibility="paid"}}
+                                <div class="font-headline text-3xl font-bold text-black mb-4 dark:text-white">
+                                    Exklusiver Premium-Inhalt
+                                </div>
+                                <p class="text-neutral-700 mb-6! text-base! dark:text-neutral-300">
+                                    Dieser Beitrag enthält besondere Inhalte, die wir exklusiv für unsere Premium-Mitglieder freischalten. Wenn dir unsere
+                                    Tipps zu Gesundheit, Fitness, Supplements, Mindset und Alltagsroutinen gefallen, freuen wir uns riesig über deine Unterstützung – so können
+                                    wir noch mehr wertvolle Beiträge erstellen. Werde Teil unserer Community und genieße den vollen Zugriff! 😊
+                                </p>
+                            {{else}}
+                                <div class="font-headline text-3xl font-bold text-black mb-4 dark:text-white">
+                                    Mitglieder-Inhalt
+                                </div>
+                                <p class="text-neutral-700 mb-6! text-base! dark:text-neutral-300">
+                                    Dieser Beitrag enthält Inhalte, die wir exklusiv für unsere registrierten Mitglieder freischalten. Wenn dir unsere
+                                    Themen zu Gesundheit, Fitness und täglichen Routinen gefallen, melde dich einfach kostenlos an – so verpasst du nichts
+                                    und wirst Teil einer Community, die sich gegenseitig inspiriert.
+                                </p>
+                            {{/has}}
+                            <div class="flex flex-col lg:flex-row gap-4">
+                                <a
+                                    href="#/portal/signup"
+                                    class="inline-flex items-center justify-center px-6 py-2.5 bg-black border-2 border-black text-white font-semibold rounded-full hover:bg-neutral-700 transition dark:bg-white dark:text-black dark:hover:bg-neutral-200"
+                                >
+                                    {{#has visibility="paid"}}Premium-Mitglied werden{{else}}Kostenlos registrieren{{/has}}
+                                </a>
+                                <a
+                                    href="#/portal/signin"
+                                    class="inline-flex items-center justify-center px-6 py-2.5 border-2 border-black text-black font-semibold rounded-full hover:bg-neutral-200 transition dark:border-white dark:text-white dark:hover:bg-neutral-800"
+                                >
+                                    Bereits Mitglied? Anmelden
+                                </a>
+                            </div>
+                        </div>
+
+                    {{/unless}}
+
+                    {{> "shareArticle" hideLabel=true }}
+
+                </div>
+
+                <div class="md:col-span-5 lg:col-span-4 md:sticky md:top-10 self-start">
+
+                    <div class="hidden md:block gh-toc">
+                        <strong class="mb-2.5 block text-base text-black dark:text-white">Inhalt</strong>
+                        <a href="#intro" class="block py-1.5 text-sm">Einleitung</a>
+                        <div class="toc"></div>
+                    </div>
+
+                    <div class="md:mt-8 p-8 bg-primary/40 rounded-2xl text-white dark:bg-emerald-900">
+                        <div class="mb-2 text-white dark:text-neutral-300 text-xs uppercase">Newsletter</div>
+                        <div class="font-headline text-4xl font-bold mb-3 text-white dark:text-white">
+                            Bleib auf dem Laufenden!
+                        </div>
+                        <p class="mb-6 text-base text-white dark:text-neutral-100">
+                        Erhalte die neuesten Tipps zu Fitness, Gesundheit, Supplements und Mindset direkt in dein Postfach – für mehr Energie, Balance und Wohlbefinden in deinem Alltag!
                         </p>
-                    {{else}}
-                        <div class="font-headline text-2xl font-bold text-black mb-4 dark:text-white">
-                            Mitglieder-Inhalt
-                        </div>
-                        <p class="text-neutral-700 mb-4! text-base! dark:text-neutral-300">
-                            Dieser Artikel ist nur für <strong>registrierte Mitglieder</strong> verfügbar. Melde dich kostenlos an!
+                        <form data-members-form="subscribe" class="flex flex-col gap-5">
+                            <input class="bg-white flex-1 px-6 py-4 border-none rounded-full text-sm text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary transition-all ease-in-out duration-500" type="email" data-members-email placeholder="Deine E-Mail-Adresse" required />
+                            <button
+                                type="submit"
+                                class="bg-primary inline-flex justify-center items-center cursor-pointer gap-2 px-6 py-3 text-white font-semibold rounded-full group dark:bg-white dark:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary active:scale-[.98] transition-all"
+                            >
+                                Jetzt anmelden
+                                <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="20" height="20"
+                                    class="group-hover:translate-x-1 transition-transform duration-300">
+                                    <path class="fill-white dark:fill-primary" d="M18,12h0a2,2,0,0,0-.59-1.4l-4.29-4.3a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42L15,11H5a1,1,0,0,0,0,2H15l-3.29,3.29a1,1,0,0,0,1.41,1.42l4.29-4.3A2,2,0,0,0,18,12Z" />
+                                </svg>
+                            </button>
+                        </form>
+                        <p class="text-xs text-center text-white dark:text-neutral-200 mt-6">
+                            Kostenlos und jederzeit abbestellbar.
                         </p>
-                    {{/has}}
-                    <div class="flex flex-col lg:flex-row gap-4">
-                        <a
-                            href="#/portal/signup"
-                            class="inline-flex items-center justify-center px-6 py-2.5 bg-black border-2 border-black text-white font-semibold rounded-full hover:bg-neutral-700 transition dark:bg-white dark:text-black dark:hover:bg-neutral-200"
-                        >
-                            {{#has visibility="paid"}}Premium-Mitglied werden{{else}}Kostenlos registrieren{{/has}}
-                        </a>
-                        <a
-                            href="#/portal/signin"
-                            class="inline-flex items-center justify-center px-6 py-2.5 border-2 border-black text-black font-semibold rounded-full hover:bg-neutral-200 transition dark:border-white dark:text-white dark:hover:bg-neutral-800"
-                        >
-                            Bereits Mitglied? Anmelden
-                        </a>
                     </div>
-                </div>
-                {{/unless}}
 
-                {{> "shareArticle" hideLabel=true }}
-
-            </div>
-
-            <div class="md:col-span-5 lg:col-span-4 md:sticky md:top-10 self-start">
-
-                <div class="hidden md:block gh-toc">
-                    <strong class="mb-2.5 block text-base text-black dark:text-white">Inhalt</strong>
-                    <a href="#intro" class="block py-1.5 text-sm">Einleitung</a>
-                    <div class="toc"></div>
-                </div>
-
-                <div class="mt-12 p-8 bg-primary/50 rounded-2xl text-white dark:bg-emerald-900">
-                    <div class="mb-2 text-white dark:text-neutral-300 text-xs uppercase">Newsletter</div>
-                    <div class="font-headline text-4xl font-bold mb-3 text-white dark:text-white">
-                        Bleib auf dem Laufenden!
-                    </div>
-                    <p class="mb-6 text-base text-white dark:text-neutral-100">
-                    Erhalte die neuesten Tipps zu Fitness, Gesundheit, Supplements und Mindset direkt in dein Postfach – für mehr Energie, Balance und Wohlbefinden in deinem Alltag!
-                    </p>
-                    <form data-members-form="subscribe" class="flex flex-col gap-5">
-                        <input class="bg-white flex-1 px-6 py-4 border-none rounded-full text-sm text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary transition-all ease-in-out duration-500" type="email" data-members-email placeholder="Deine E-Mail-Adresse" required />
-                        <button
-                            type="submit"
-                            class="bg-primary inline-flex justify-center items-center cursor-pointer gap-2 px-6 py-3 text-white font-semibold rounded-full group dark:bg-white dark:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary active:scale-[.98] transition-all"
-                        >
-                            Jetzt anmelden
-                            <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="20" height="20"
-                                class="group-hover:translate-x-1 transition-transform duration-300">
-                                <path class="fill-white dark:fill-primary" d="M18,12h0a2,2,0,0,0-.59-1.4l-4.29-4.3a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42L15,11H5a1,1,0,0,0,0,2H15l-3.29,3.29a1,1,0,0,0,1.41,1.42l4.29-4.3A2,2,0,0,0,18,12Z" />
-                            </svg>
-                        </button>
-                    </form>
-                    <p class="text-xs text-center text-white dark:text-neutral-200 mt-6">
-                        Kostenlos und jederzeit abbestellbar.
-                    </p>
                 </div>
 
             </div>
 
-        </div>
-
-        <div class="max-w-6xl mx-auto py-16">
-            {{#if comments}}
-                {{comments title="Kommentare" count=true mode="auto"}}
-            {{/if}}
-        </div>
-
-    </article>
-
-    <aside class="max-w-7xl mx-auto px-8">
-
-        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-12 md:gap-6 py-12">
-
-            <div class="md:w-1/2 flex md:items-center gap-3">
-                {{#next_post}}
-                <a class="flex items-center gap-4 group" href="{{url}}">
-                    <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
-                        <img class="w-full h-full object-cover" src="{{img_url feature_image size="s"}}" alt="" />
-                    </span>
-                    <span>
-                        <span class="text-xs">Neuerer Post</span>
-                        <h4
-                            class="font-headline text-xl pr-10 text-black font-semibold group-hover:underline group-hover:underline-offset-4 dark:text-white">
-                            {{title}}</h4>
-                    </span>
-                </a>
-                {{/next_post}}
+            <div class="max-w-6xl mx-auto px-8 py-16">
+                {{#if comments}}
+                    {{comments title="Kommentare" count=true mode="auto"}}
+                {{/if}}
             </div>
 
-            <div class="md:w-1/2 flex items-center md:justify-end gap-3 group">
-                {{#prev_post}}
-                <a class="flex items-center gap-4 md:text-right md:flex-row-reverse" href="{{url}}">
-                    <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
-                        <img class="w-full h-full object-cover" src="{{img_url feature_image size="s"}}" alt="" />
-                    </span>
-                    <span>
-                        <span class="text-xs">Älterer Post</span>
-                        <h4
-                            class="font-headline text-xl md:pl-10 text-black font-semibold group-hover:underline group-hover:underline-offset-4 dark:text-white">
-                            {{title}}</h4>
-                    </span>
+        </article>
 
-                </a>
-                {{/prev_post}}
+        <aside class="max-w-7xl mx-auto px-8">
+
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-12 md:gap-6 py-12">
+
+                <div class="md:w-1/2 flex md:items-center gap-3">
+                    {{#next_post}}
+                    <a class="flex items-center gap-4 group" href="{{url}}">
+                        <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
+                            <img class="w-full h-full object-cover" src="{{img_url feature_image size="s"}}" alt="" />
+                        </span>
+                        <span>
+                            <span class="text-xs">Neuerer Post</span>
+                            <h4
+                                class="font-headline text-xl pr-10 text-black font-semibold group-hover:underline group-hover:underline-offset-4 dark:text-white">
+                                {{title}}</h4>
+                        </span>
+                    </a>
+                    {{/next_post}}
+                </div>
+
+                <div class="md:w-1/2 flex items-center md:justify-end gap-3 group">
+                    {{#prev_post}}
+                    <a class="flex items-center gap-4 md:text-right md:flex-row-reverse" href="{{url}}">
+                        <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
+                            <img class="w-full h-full object-cover" src="{{img_url feature_image size="s"}}" alt="" />
+                        </span>
+                        <span>
+                            <span class="text-xs">Älterer Post</span>
+                            <h4
+                                class="font-headline text-xl md:pl-10 text-black font-semibold group-hover:underline group-hover:underline-offset-4 dark:text-white">
+                                {{title}}</h4>
+                        </span>
+
+                    </a>
+                    {{/prev_post}}
+                </div>
+
             </div>
 
-        </div>
-
-    </aside>
-
+        </aside>
     {{/post}}
