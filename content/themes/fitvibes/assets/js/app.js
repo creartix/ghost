@@ -2,6 +2,9 @@
 
 // Import CSS
 import '../css/main.css';
+import loadMore from './loadMore.js';
+
+loadMore();
 
 (function () {
     const html = document.documentElement;

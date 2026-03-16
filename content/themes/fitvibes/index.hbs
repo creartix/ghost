@@ -29,15 +29,21 @@
         </section>
 
         <section class="py-16">
-            <h2 class="mb-4 font-medium uppercase text-xs dark:text-neutral-400">Andere Beiträge</h2>
-            <div class="@container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                {{#foreach posts}}
-                    {{> "post-card" page=../pagination.page }}
+            <h2 class="mb-4 font-medium uppercase text-xs dark:text-neutral-400">Aktuelle Beiträge</h2>
+            <div class="gh-postfeed @container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                {{#foreach posts limit="12"}}
+                    {{> "post-card" page=../pagination.page}}
                 {{/foreach}}
             </div>
+            {{#if pagination.next}}
+                <div class="flex justify-center mt-12">
+                    <button id="load-more-btn" data-next-url="{{@site.url}}/page/{{pagination.next}}/" class="px-8 py-3 rounded-full border-2 border-black text-black font-semibold hover:bg-black hover:text-white transition dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black">
+                        Mehr laden
+                    </button>
+                </div>
+            {{/if}}
         </section>
 
-        {{!-- If JS isn't enabled, fallback to standard pagination --}}
         <noscript>
             <div class="gh-pagination">
                 {{pagination}}
