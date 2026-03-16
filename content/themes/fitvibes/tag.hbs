@@ -18,14 +18,14 @@
     </div>
 
     <div class="max-w-5xl mx-auto px-8 py-12 text-center">
-        <h1 class="font-headline font-light text-xl text-black leading-tight md:text-2xl lg:text-5xl dark:text-white">
+        <h1 class="font-headline font-light text-3xl text-black leading-tight lg:text-5xl dark:text-white">
             <span class="font-semibold">{{name}}</span>
         </h1>
-        <p class="mt-4 font-headline font-light text-xl dark:text-neutral-200">
+        <p class="mt-4 font-headline font-light text-xl text-neutral-800 lg:text-2xl dark:text-neutral-100">
             {{#if description}}
                 {{description}}
             {{else}}
-                A collection of {{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}}
+                Eine Sammlung von {{plural ../pagination.total empty='Beiträgen' singular='% Beitrag' plural='% Beiträgen'}}
             {{/if}}
         </p>
     </div>
@@ -34,7 +34,11 @@
 <section class="py-16 px-6">
     <div class="max-w-8xl mx-auto">
         <section>
-            <h2 class="mb-4 font-medium uppercase text-xs dark:text-neutral-400">{{#tag}}Alles Beiträge über {{name}}{{/tag}}</h2>
+            <h2 class="mb-4 font-medium uppercase text-xs dark:text-neutral-400">
+                {{#tag}}
+                {{plural ../pagination.total empty='Beiträgen' singular='% Beitrag' plural='% Beiträgen'}} über {{name}}
+                {{/tag}}
+            </h2>
             <div class="@container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                 {{#foreach posts}}
                     {{> "post-card"}}

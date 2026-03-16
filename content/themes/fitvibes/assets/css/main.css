@@ -94,15 +94,7 @@ html, body {
 .post-content h2,
 .post-content h3,
 .post-content h4 {
-    @apply mb-4 text-black font-headline font-semibold dark:text-white
-}
-
-.post-content h2 {
-    @apply text-4xl
-}
-
-.post-content h3 {
-    @apply text-3xl
+    @apply text-black font-headline font-semibold dark:text-white
 }
 
 .post-content p > a {
@@ -122,16 +114,17 @@ html, body {
     @apply rounded-xl
 }
 
-.post-content p,
 .post-content iframe,
-.post-content ol,
-.post-content ul,
 .post-content table {
     @apply mb-8 last:mb-0
 }
 
 .post-content ul {
-    @apply list-disc pl-7 space-y-2.5
+    @apply list-disc space-y-2.5
+}
+
+.post-content ul li {
+    @apply text-neutral-800 dark:text-neutral-200
 }
 
 .post-content hr {

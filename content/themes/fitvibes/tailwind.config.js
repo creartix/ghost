@@ -5,5 +5,7 @@ export default {
         './assets/**/*.js',
     ],
     theme: {},
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/typography'),
+    ],
 }

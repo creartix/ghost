@@ -38,6 +38,7 @@
     "devDependencies": {
         "@tailwindcss/cli": "^4.2.1",
         "@tailwindcss/postcss": "4.0.0-alpha.30",
+        "@tailwindcss/typography": "^0.5.19",
         "bestzip": "^2.2.1",
         "browser-sync": "^3.0.4",
         "concurrently": "^8.2.0",
@@ -74,7 +75,11 @@
         "portal": {
             "button": true,
             "name": true,
-            "plans": ["free", "monthly", "yearly"],
+            "plans": [
+                "free",
+                "monthly",
+                "yearly"
+            ],
             "default": "free"
         }
     },
