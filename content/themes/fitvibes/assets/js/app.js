@@ -3,8 +3,10 @@
 // Import CSS
 import '../css/main.css';
 import loadMore from './loadMore.js';
+import loadCommentCounts from './commentCounts.js';
 
 loadMore();
+loadCommentCounts();
 
 (function () {
     const html = document.documentElement;
