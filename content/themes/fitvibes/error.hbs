@@ -1,6 +1,6 @@
 {{!< default}}
 
-<div class="h-[30vh] lg:h-[50vh] opacity-30 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
+<div class="h-[40vh] lg:h-[50vh] opacity-30 absolute top-0 left-0 right-0 -z-1 mask-cover mask-no-repeat [mask-image:linear-gradient(to_top,transparent_0%,rgba(0,0,0,0.25)_40%,rgba(0,0,0,0.75)_70%,black_100%)]">
     <img class="md:hidden w-full h-full object-cover" src="{{asset "images/hero-poster.jpg"}}" alt="Hero">
     <video class="hidden md:block w-full h-full object-cover" poster="{{asset "images/hero-poster.jpg"}}" autoplay muted loop playsinline>
         <source src="{{asset "video/hero-video.mp4"}}" type="video/mp4">
@@ -13,10 +13,13 @@
 
         <div class="py-16 text-center my-8">
 
-            <h1 class="font-headline text-black text-xl md:text-2xl lg:text-8xl dark:text-white">{{statusCode}}</h1>
+            <h1 class="font-headline text-black text-5xl lg:text-8xl dark:text-white">{{statusCode}}</h1>
             <p class="text-xs my-6">{{message}}</p>
-            <p class="font-medium text-lg">Diese Seite hat sich eine kleine Auszeit gegönnt.</p>
-            <p class="mt-5">Schau dir stattdessen unsere neuesten Beiträge an.<br />Vielleicht wartet dort genau die Inspiration, die du heute brauchst</p>
+            <p class="font-medium text-lg">Ups, diese Route hat sich verlaufen – wie manche Trainingspläne.</p>
+            <p class="mt-5">
+                Schau dir stattdessen unsere neuesten Beiträge an.<br />
+                Vielleicht wartet dort genau die Inspiration, die du heute brauchst
+            </p>
 
             <div class="mt-12">
                 {{> "button" variant="danger" text="Zur Startseite" href=@site.url }}
@@ -41,7 +44,7 @@
 
         </div>
 
-        {{#get "posts" limit="9"}}
+        {{#get "posts" limit="6"}}
             <section class="py-16">
                 <h2 class="mb-4 font-medium uppercase text-xs">Kürzliche Beiträge</h2>
                 <div class="@container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">

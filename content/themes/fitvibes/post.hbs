@@ -78,23 +78,23 @@
             {{#if feature_image}}
                 <div class="max-w-7xl mx-auto my-10 md:px-8">
                     <figure>
-                        <div class="aspect-video block w-full md:rounded-2xl overflow-hidden">
-                        <img
-                            class="w-full h-full object-cover"
-                            srcset="{{img_url feature_image size="s"}} 300w,
-                            {{img_url feature_image size="m"}} 600w,
-                            {{img_url feature_image size="l"}} 1200w,
-                            {{img_url feature_image size="xl"}} 2000w"
-                            sizes="(min-width: 1400px) 1400px, 92vw"
-                            src="{{img_url feature_image size="l"}}"
-                            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                        />
+                        <div class="aspect-video group block relative w-full md:rounded-2xl overflow-hidden">
+                            <img
+                                class="w-full h-full object-cover"
+                                srcset="{{img_url feature_image size="s"}} 300w,
+                                {{img_url feature_image size="m"}} 600w,
+                                {{img_url feature_image size="l"}} 1200w,
+                                {{img_url feature_image size="xl"}} 2000w"
+                                sizes="(min-width: 1400px) 1400px, 92vw"
+                                src="{{img_url feature_image size="l"}}"
+                                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                            />
+                            {{#if feature_image_caption}}
+                                <figcaption class="bg-black/35 py-1 px-2 inline-block text-xs text-white/80 absolute bottom-3 left-3 z-10 translate-y-10 rounded-md group-hover:translate-y-1 transition-all">
+                                    {{feature_image_caption}}
+                                </figcaption>
+                            {{/if}}
                         </div>
-                        {{#if feature_image_caption}}
-                            <figcaption class="block text-xs mt-2 pl-6">
-                                {{feature_image_caption}}
-                            </figcaption>
-                        {{/if}}
                     </figure>
                 </div>
             {{/if}}
