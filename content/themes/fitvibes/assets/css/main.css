@@ -263,7 +263,7 @@ html, body {
 }
 
 .toc-list {
-    @apply list-none p-0 m-0 pl-4! space-y-2
+    @apply list-none p-0! m-0 space-y-2
 }
 
 .toc-list li.toc-list-item a.toc-link {
