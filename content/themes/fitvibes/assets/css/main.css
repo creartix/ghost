@@ -256,7 +256,7 @@ html, body {
 }
 
 .reading-progress::-webkit-progress-value {
-    @apply bg-black!
+    @apply bg-primary!
 }
 .dark .reading-progress::-webkit-progress-value {
     @apply bg-white!
