@@ -60,7 +60,8 @@
     --gh-font-body: "Inter", "sans-serif";
 }
 
-html, body {
+html,
+body {
     @apply text-neutral-600 antialiased dark:bg-neutral-900 dark:text-neutral-200 scroll-smooth
 }
 
@@ -97,7 +98,7 @@ html, body {
     @apply text-black font-headline font-semibold dark:text-white
 }
 
-.post-content p > a {
+.post-content p>a {
     @apply font-bold text-black dark:text-white underline underline-offset-4 hover:no-underline
 }
 
@@ -164,7 +165,7 @@ html, body {
 }
 
 .kg-bookmark-container {
-    @apply bg-white rounded-2xl! my-12 max-w-3xl mx-auto shadow-xl hover:bg-neutral-50! hover:-translate-y-1 transition duration-300 dark:bg-neutral-800! dark:hover:bg-neutral-700!;
+    @apply bg-white rounded-2xl! my-12 max-w-3xl mx-auto shadow hover:bg-neutral-50! hover:-translate-y-1 transition duration-300 dark:bg-neutral-800! dark:hover:bg-neutral-700!;
 }
 
 .kg-bookmark-content .kg-bookmark-title {
@@ -180,11 +181,15 @@ html, body {
 }
 
 .kg-bookmark-container .kg-bookmark-thumbnail img {
-    @apply w-full h-full object-cover static!
+    @apply w-full h-full object-cover static! m-0! rounded-lg!
 }
 
 .kg-bookmark-container .kg-bookmark-metadata {
-    @apply dark:text-neutral-400
+    @apply flex items-center dark:text-neutral-400 mt-4!
+}
+
+.kg-bookmark-container .kg-bookmark-icon {
+    @apply m-0! mr-2!
 }
 
 .kg-toggle-card {
@@ -258,6 +263,7 @@ html, body {
 .reading-progress::-webkit-progress-value {
     @apply bg-primary!
 }
+
 .dark .reading-progress::-webkit-progress-value {
     @apply bg-white!
 }
@@ -386,6 +392,7 @@ html, body {
         transform: translateY(-12px);
         transform-origin: center;
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
