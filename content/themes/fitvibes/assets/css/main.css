@@ -163,6 +163,10 @@ html, body {
     @apply -mx-6 sm:-mx-12 md:-mx-16 lg:mx-0;
 }
 
+.post-content .kg-card.kg-image-card {
+    @apply my-4!
+}
+
 .kg-bookmark-container {
     @apply bg-white rounded-2xl! my-12 max-w-3xl mx-auto shadow-xl hover:bg-neutral-50! hover:-translate-y-1 transition duration-300 dark:bg-neutral-800! dark:hover:bg-neutral-700!;
 }
