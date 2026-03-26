@@ -98,7 +98,9 @@ body {
     @apply text-black font-headline font-semibold dark:text-white
 }
 
-.post-content p>a {
+.post-content p > a,
+.post-content ul li a,
+.post-content ol li a {
     @apply font-bold text-black dark:text-white underline underline-offset-4 hover:no-underline
 }
 
@@ -120,11 +122,16 @@ body {
     @apply mb-8 last:mb-0
 }
 
+.post-content ol {
+    @apply list-decimal space-y-2.5
+}
+
 .post-content ul {
     @apply list-disc space-y-2.5
 }
 
-.post-content ul li {
+.post-content ul li,
+.post-content ol li {
     @apply text-neutral-800 dark:text-neutral-200
 }
 
