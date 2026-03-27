@@ -25,8 +25,7 @@
             </svg>
             {{#unless hideLabel}}Twitter/X{{/unless}}
         </a>
-        <a href="https://pinterest.com/pin/create/button/?url={{url absolute=" true"}}&media={{#if feature_image}}{{img_url
-            feature_image size="l" }}{{else}}{{@site.cover_image}}{{/if}}&description={{encode title}}" target="_blank"
+        <a href="https://pinterest.com/pin/create/button/?url={{url absolute=" true"}}&media={{#if feature_image}}{{img_url feature_image size="l" absolute=" true" }}{{else}}{{@site.cover_image}}{{/if}}&description={{encode title}}" target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 cursor-pointer text-black font-semibold text-xs rounded-full hover:bg-neutral-200 transition dark:bg-white dark:text-black dark:hover:bg-neutral-200">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
