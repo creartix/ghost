@@ -46,7 +46,7 @@
                         {{#foreach authors}}
                             {{#if profile_image}}
                                 <a href="{{url}}" class="shrink-0">
-                                    <img src="{{img_url profile_image size="xs"}}" alt="{{name}}" class="size-12 rounded-full object-cover" />
+                                    <img src="{{img_url profile_image size="xs" absolute=" true"}}" alt="{{name}}" class="size-12 rounded-full object-cover" />
                                 </a>
                             {{else}}
                                 <a href="{{url}}" class="shrink-0" title="{{name}}">
@@ -81,12 +81,12 @@
                         <div class="aspect-video group block relative w-full md:rounded-2xl overflow-hidden">
                             <img
                                 class="w-full h-full object-cover"
-                                srcset="{{img_url feature_image size="s"}} 300w,
-                                {{img_url feature_image size="m"}} 600w,
-                                {{img_url feature_image size="l"}} 1200w,
-                                {{img_url feature_image size="xl"}} 2000w"
+                                srcset="{{img_url feature_image size="s" absolute=" true"}} 300w,
+                                {{img_url feature_image size="m" absolute=" true"}} 600w,
+                                {{img_url feature_image size="l" absolute=" true"}} 1200w,
+                                {{img_url feature_image size="xl" absolute=" true"}} 2000w"
                                 sizes="(min-width: 1400px) 1400px, 92vw"
-                                src="{{img_url feature_image size="l"}}"
+                                src="{{img_url feature_image size="l" absolute=" true"}}"
                                 alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
                             />
                             {{#if feature_image_caption}}
@@ -222,7 +222,7 @@
                     {{#next_post}}
                     <a class="flex items-center gap-4 group" href="{{url}}">
                         <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
-                            <img class="w-full h-full object-cover" src="{{img_url feature_image size="s"}}" alt="" />
+                            <img class="w-full h-full object-cover" src="{{img_url feature_image size="s" absolute=" true"}}" alt="" />
                         </span>
                         <span>
                             <span class="text-xs">Neuerer Post</span>
@@ -236,7 +236,7 @@
                     {{#prev_post}}
                     <a class="flex items-center gap-4 md:text-right md:flex-row-reverse" href="{{url}}">
                         <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
-                            <img class="w-full h-full object-cover" src="{{img_url feature_image size="s"}}" alt="" />
+                            <img class="w-full h-full object-cover" src="{{img_url feature_image size="s" absolute=" true"}}" alt="" />
                         </span>
                         <span>
                             <span class="text-xs">Älterer Post</span>

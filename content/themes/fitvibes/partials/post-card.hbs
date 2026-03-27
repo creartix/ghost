@@ -18,11 +18,11 @@ Re-usable card for linking to posts
 
       <img
           class="w-full h-full object-cover"
-          srcset="{{img_url feature_image size="s"}} 300w,
-          {{img_url feature_image size="m"}} 600w,
-          {{img_url feature_image size="l"}} 1200w"
+          srcset="{{img_url feature_image size="s" absolute=" true"}} 300w,
+          {{img_url feature_image size="m" absolute=" true"}} 600w,
+          {{img_url feature_image size="l" absolute=" true"}} 1200w"
           sizes="(max-width: 420px) 420px, 840px"
-          src="{{img_url feature_image size="m"}}"
+          src="{{img_url feature_image size="m" absolute=" true"}}"
           alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
           loading="lazy"
         />
