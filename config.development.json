@@ -7,11 +7,16 @@
   "database": {
     "client": "sqlite3",
     "connection": {
-      "filename": "content/data/ghost-local.db"
+      "filename": "/Users/marcel/Developer/private/ghost/content/data/ghost-local.db"
     }
   },
   "mail": {
-    "transport": "Direct"
+    "transport": "SMTP",
+    "options": {
+      "host": "localhost",
+      "port": 1025,
+      "secure": false
+    }
   },
   "logging": {
     "transports": [

@@ -1,5 +1,5 @@
 {
-    "name": "fitvibes",
+    "name": "naturalrootines",
     "description": "",
     "version": "1.0.0",
     "engines": {
@@ -15,9 +15,9 @@
         "watch": "vite build --watch"
     },
     "author": {
-        "name": "Fitvibes",
-        "email": "hello@fitvibes.com",
-        "url": "https://fitvibes.com"
+        "name": "NaturalRootines",
+        "email": "hello@naturalrootines.de",
+        "url": "https://naturalrootines.de"
     },
     "gpm": {
         "type": "theme",

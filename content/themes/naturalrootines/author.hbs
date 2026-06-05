@@ -18,19 +18,16 @@
 
         <div class="mt-4 flex items-center gap-4 justify-center">
             {{#if website}}
-            <a class="text-black dark:text-white font-medium" href="{{website}}" target="_blank" rel="noopener">Website</a>
+            <a class="text-black dark:text-white font-medium" href="{{website}}" target="_blank" rel="noopener">Webseite</a>
             {{/if}}
-            {{#if @site.twitter}}
-            <a class="text-black dark:text-white font-medium" href="{{social_url type="twitter"}}" target="_blank" rel="noopener">Twitter</a>
+            {{#if instagram}}
+            <a class="text-black dark:text-white font-medium" href="https://www.instagram.com/{{instagram}}" target="_blank" rel="noopener">Instagram</a>
             {{/if}}
-            {{#if @site.facebook}}
-            <a class="text-black dark:text-white font-medium" href="{{social_url type="facebook"}}" target="_blank" rel="noopener">Facebook</a>
+            {{#if twitter}}
+            <a class="text-black dark:text-white font-medium" href="https://twitter.com/{{twitter}}" target="_blank" rel="noopener">Twitter</a>
             {{/if}}
-            {{#if @site.instagram}}
-            <a class="text-black dark:text-white font-medium" href="{{social_url type="instagram"}}" target="_blank" rel="noopener">Instagram</a>
-            {{/if}}
-            {{#if @site.linkedin}}
-            <a class="text-black dark:text-white font-medium" href="{{social_url type="linkedin"}}" target="_blank" rel="noopener">LinkedIn</a>
+            {{#if facebook}}
+            <a class="text-black dark:text-white font-medium" href="https://www.facebook.com/{{facebook}}" target="_blank" rel="noopener">Facebook</a>
             {{/if}}
         </div>
 
