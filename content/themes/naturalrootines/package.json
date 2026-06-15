@@ -10,7 +10,7 @@
         "desktop": "assets/screenshot-desktop.jpg"
     },
     "scripts": {
-        "dev": "vite build --watch --mode development",
+        "dev": "concurrently \"vite build --watch --mode development\" \"browser-sync start --proxy 'localhost:2368' --files 'assets/built/main.css,assets/built/app.js' --port 3000 --no-open\"",
         "build": "vite build",
         "watch": "vite build --watch"
     },
@@ -37,13 +37,13 @@
     },
     "devDependencies": {
         "@tailwindcss/cli": "^4.2.1",
-        "@tailwindcss/postcss": "4.0.0-alpha.30",
-        "@tailwindcss/typography": "^0.5.19",
+        "@tailwindcss/postcss": "^4.3.0",
+        "@tailwindcss/typography": "^0.5.20",
         "bestzip": "^2.2.1",
         "browser-sync": "^3.0.4",
         "concurrently": "^8.2.0",
-        "tailwindcss": "4.0.0-alpha.30",
-        "vite": "^7.1.11"
+        "tailwindcss": "^4.3.0",
+        "vite": "^8.0.16"
     },
     "browserslist": [
         "defaults"

@@ -3,12 +3,15 @@ import { resolve } from 'path';
 
 export default defineConfig({
     base: '/assets/built/',
+    cacheDir: false,
     build: {
         outDir: 'assets/built',
         emptyOutDir: true,
         manifest: true,
+        cssMinify: false,
         watch: {
-            include: ['assets/**', '**/*.hbs']
+            include: ['assets/css/**', 'assets/js/**', '**/*.hbs'],
+            exclude: ['assets/built/**']
         },
         rollupOptions: {
             input: {

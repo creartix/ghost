@@ -1,7 +1,10 @@
 @import "tailwindcss";
-@config "../../tailwind.config.js";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@source "./**/*.hbs";
+@source "./assets/**/*.js";
 
 /* fraunces-300 - latin */
 @font-face {
@@ -49,9 +52,9 @@
 }
 
 @theme {
-    --font-family-headline: "Fraunces", "serif";
+    --font-headline: "Fraunces", "serif";
     --spacing-8xl: 1340px;
-    --aspect-ratio-article: 4 / 2.5;
+    --aspect-article: 4 / 2.5;
     --color-primary: oklch(0.43 0.09 165.86);
 }
 
@@ -89,6 +92,34 @@ body {
 
 .button-primary {
     @apply bg-primary flex justify-center items-center cursor-pointer gap-2 px-6 py-3 text-white font-semibold rounded-full dark:bg-white dark:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary active:scale-[.98] transition-all
+}
+
+.responsive-table {
+    @apply bg-white rounded-xl border border-neutral-200 shadow-xs overflow-x-auto dark:bg-zinc-950 dark:border-zinc-800
+}
+
+.responsive-table table {
+    @apply min-w-full
+}
+
+.responsive-table table tr th {
+    @apply border-b border-r border-neutral-200 text-left text-black px-5 py-3 dark:text-white dark:border-zinc-800
+}
+
+.responsive-table table tr th:last-child {
+    @apply border-r-0
+}
+
+.responsive-table table tr td {
+    @apply align-top px-5 py-3 border-b border-r border-neutral-200 dark:border-zinc-800
+}
+
+.responsive-table table tr td:last-child {
+    @apply border-r-0
+}
+
+.responsive-table table tr:last-child td {
+    @apply border-b-0
 }
 
 .post-content h1,
