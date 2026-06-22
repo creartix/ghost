@@ -103,7 +103,7 @@ body {
 }
 
 .responsive-table table tr th {
-    @apply border-b border-r border-neutral-200 text-left text-black px-5 py-3 dark:text-white dark:border-zinc-800
+    @apply bg-neutral-100 border-b border-r border-neutral-200 text-left text-black px-5 py-3 dark:bg-white/10 dark:text-white dark:border-white/10
 }
 
 .responsive-table table tr th:last-child {
@@ -235,11 +235,11 @@ body {
 }
 
 .kg-toggle-card {
-    @apply rounded-2xl! mb-8 dark:bg-neutral-900 dark:border-neutral-600!
+    @apply rounded-2xl! dark:bg-neutral-900 dark:border-neutral-600!
 }
 
 .kg-toggle-card .kg-toggle-heading {
-    @apply text-base! font-semibold text-black dark:text-white
+    @apply text-base! font-semibold font-normal! text-black dark:text-white
 }
 
 .kg-product-card .kg-product-card-container {
