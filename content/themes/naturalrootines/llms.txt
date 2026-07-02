@@ -1,0 +1,18 @@
+# NaturalRootines
+
+> Persönlicher Blog rund um smarte Routinen für mehr Energie, Fitness, Gesundheit, Supplements und Mindset – speziell für Menschen ab 35 Jahren. Ehrlich, praxisnah, ohne Hype.
+
+## Themenbereiche
+
+- [Fitness](https://naturalrootines.de/tag/fitness/): Training, Regeneration, Kraftsport und Bewegung im Alltag
+- [Gesundheit](https://naturalrootines.de/tag/gesundheit/): Prävention, Schlaf, Erholung und körperliches Wohlbefinden
+- [Supplements](https://naturalrootines.de/tag/supplements/): Nahrungsergänzungsmittel ehrlich bewertet – was wirkt, was nicht
+- [Mindset](https://naturalrootines.de/tag/mindset/): Mentale Stärke, Gewohnheiten und persönliche Entwicklung
+
+## Über die Seite
+
+- Autor: Marcel
+- Sprache: Deutsch
+- Zielgruppe: Berufstätige 35+, die aktiv an Training, Ernährung und Routinen arbeiten
+- Fokus: Umsetzbare Alltags-Verbesserungen statt Hype und Extreme
+- RSS: https://naturalrootines.de/rss/
