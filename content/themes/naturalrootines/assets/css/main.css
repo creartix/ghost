@@ -63,7 +63,6 @@
     --gh-font-body: "Inter", "sans-serif";
 }
 
-html,
 body {
     @apply text-neutral-600 antialiased dark:bg-neutral-900 dark:text-neutral-200 scroll-smooth
 }
