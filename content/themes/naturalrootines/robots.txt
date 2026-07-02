@@ -2,7 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /ghost/
 Disallow: /p/
-Disallow: /tag/
 Disallow: /author/
 
 Sitemap: https://naturalrootines.de/sitemap.xml

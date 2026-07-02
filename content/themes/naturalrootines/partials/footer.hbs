@@ -1,18 +1,19 @@
-<footer class="bg-neutral-50 dark:bg-black px-8">
+<footer class="bg-neutral-50 dark:bg-black px-8" role="contentinfo">
 
-    <div class="mx-auto max-w-8xl py-12 border-b border-neutral-200 dark:border-white/20">
+    <section aria-labelledby="newsletter-heading" class="mx-auto max-w-8xl py-12 border-b border-neutral-200 dark:border-white/20">
         <div class="grid grid-cols-1 md:grid-cols-12 md:items-center gap-4 md:gap-8">
             <div class="md:col-span-6">
                 <div class="mb-2 text-neutral-500 dark:text-neutral-300 text-xs uppercase">Newsletter</div>
-                <div class="font-headline text-4xl font-bold mb-3 text-black dark:text-white">Bleib auf dem Laufenden!
-                </div>
+                <h2 id="newsletter-heading" class="font-headline text-4xl font-bold mb-3 text-black dark:text-white">Bleib auf dem Laufenden!
+                </h2>
                 <p>Erhalte die neuesten Tipps zu Fitness, Gesundheit, Supplements und Mindset direkt in dein Postfach – für mehr Energie, Balance und Wohlbefinden in deinem Alltag!</p>
             </div>
             <div class="md:col-span-6 flex justify-end">
                 <a href="#/portal/signup"
+                    aria-label="Kostenlos zum Newsletter anmelden"
                     class="bg-primary w-full flex md:w-auto md:inline-flex justify-center items-center cursor-pointer gap-2 px-6 py-3 text-white font-semibold rounded-full group dark:bg-white dark:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary active:scale-[.98] transition-all">
                     Kostenlos anmelden
-                    <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="20" height="20"
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"
                         class="group-hover:translate-x-1 transition-transform duration-300">
                         <path class="fill-white dark:fill-primary"
                             d="M18,12h0a2,2,0,0,0-.59-1.4l-4.29-4.3a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42L15,11H5a1,1,0,0,0,0,2H15l-3.29,3.29a1,1,0,0,0,1.41,1.42l4.29-4.3A2,2,0,0,0,18,12Z" />
@@ -20,7 +21,7 @@
                 </a>
             </div>
         </div>
-    </div>
+    </section>
 
     <div class="mx-auto max-w-8xl py-12 border-b border-neutral-200 dark:border-white/20">
         <div class="grid grid-cols-1 md:grid-cols-12 md:items-center gap-4 md:gap-8">
@@ -72,7 +73,7 @@
         </div>
     </div>
 
-    <div class="mx-auto max-w-8xl py-12">
+    <nav aria-label="Footer Navigation" class="mx-auto max-w-8xl py-12">
 
         <div class="xl:grid xl:grid-cols-12 xl:gap-8">
 
@@ -118,7 +119,7 @@
 
         </div>
 
-    </div>
+    </nav>
 
 </footer>
 

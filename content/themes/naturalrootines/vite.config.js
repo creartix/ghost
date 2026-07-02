@@ -8,7 +8,8 @@ export default defineConfig({
         outDir: 'assets/built',
         emptyOutDir: true,
         manifest: true,
-        cssMinify: false,
+        cssMinify: 'lightningcss',
+        minify: false,
         watch: {
             include: ['assets/css/**', 'assets/js/**', '**/*.hbs'],
             exclude: ['assets/built/**']

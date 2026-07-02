@@ -49,7 +49,7 @@
                         {{#foreach authors}}
                             {{#if profile_image}}
                                 <a href="{{url}}" class="shrink-0">
-                                    <img src="{{img_url profile_image size="xs" absolute=" true"}}" alt="{{name}}" class="size-12 rounded-full object-cover" />
+                                    <img src="{{img_url profile_image size="xs" absolute=" true"}}" alt="{{name}}" class="size-12 rounded-full object-cover" loading="lazy" width="48" height="48" />
                                 </a>
                             {{else}}
                                 <a href="{{url}}" class="shrink-0" title="{{name}}">
@@ -91,6 +91,10 @@
                                 sizes="(min-width: 1400px) 1400px, 92vw"
                                 src="{{img_url feature_image size="l" absolute=" true"}}"
                                 alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                                loading="eager"
+                                fetchpriority="high"
+                                width="1200"
+                                height="675"
                             />
                             {{#if feature_image_caption}}
                                 <figcaption class="bg-black/35 py-1 px-2 inline-block text-xs text-white/80 absolute bottom-3 left-3 z-10 translate-y-10 rounded-md group-hover:translate-y-1 transition-all">
@@ -225,7 +229,7 @@
                     {{#next_post}}
                     <a class="flex items-center gap-4 group" href="{{url}}">
                         <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
-                            <img class="w-full h-full object-cover" src="{{img_url feature_image size="s" absolute=" true"}}" alt="" />
+                            <img class="w-full h-full object-cover" src="{{img_url feature_image size="s" absolute=" true"}}" alt="{{#if title}}Vorschaubild: {{title}}{{else}}Neuerer Artikel{{/if}}" loading="lazy" width="100" height="100" />
                         </span>
                         <span>
                             <span class="text-xs">Neuerer Post</span>
@@ -239,7 +243,7 @@
                     {{#prev_post}}
                     <a class="flex items-center gap-4 md:text-right md:flex-row-reverse" href="{{url}}">
                         <span class="w-20 shrink-0 aspect-square block rounded-2xl overflow-hidden">
-                            <img class="w-full h-full object-cover" src="{{img_url feature_image size="s" absolute=" true"}}" alt="" />
+                            <img class="w-full h-full object-cover" src="{{img_url feature_image size="s" absolute=" true"}}" alt="{{#if title}}Vorschaubild: {{title}}{{else}}Älterer Artikel{{/if}}" loading="lazy" width="100" height="100" />
                         </span>
                         <span>
                             <span class="text-xs">Älterer Post</span>
@@ -252,4 +256,28 @@
             </div>
 
         </aside>
+
+        {{!-- Related Posts Section --}}
+        <section class="max-w-7xl mx-auto px-8 py-12 border-t border-neutral-200 dark:border-neutral-700">
+            <h2 class="font-headline text-3xl font-bold text-black mb-8 dark:text-white">Ähnliche Artikel</h2>
+
+            {{#get "posts" limit="3" filter="tags:[{{primary_tag.slug}}]+id:-{{id}}" as |related_posts|}}
+                {{#if related_posts}}
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {{#foreach related_posts}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    </div>
+                {{else}}
+                    {{!-- Fallback: Show latest posts if no related posts found --}}
+                    {{#get "posts" limit="3" filter="id:-{{id}}" as |latest_posts|}}
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {{#foreach latest_posts}}
+                                {{> "post-card"}}
+                            {{/foreach}}
+                        </div>
+                    {{/get}}
+                {{/if}}
+            {{/get}}
+        </section>
     {{/post}}

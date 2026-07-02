@@ -4,8 +4,10 @@
 import '../css/main.css';
 import loadMore from './loadMore.js';
 
+// Initialize load more functionality
 loadMore();
 
+// Theme Toggle with System Preference Support
 (function () {
     const html = document.documentElement;
     const button = document.getElementById('themeCycleBtn');
@@ -13,6 +15,8 @@ loadMore();
     const iconDark = document.getElementById('iconDark');
     const iconSystem = document.getElementById('iconSystem');
     const tooltipText = document.getElementById('tooltipText');
+
+    if (!button) return;
 
     const themes = ['system', 'light', 'dark'];
     const icons = {
@@ -31,38 +35,35 @@ loadMore();
     }
 
     function applyTheme(theme, animate = false) {
-        if (theme === 'system') {
-            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            html.classList.toggle('dark', systemDark);
-        } else {
-            html.classList.toggle('dark', theme === 'dark');
-        }
+        const isDark = theme === 'system'
+            ? window.matchMedia('(prefers-color-scheme: dark)').matches
+            : theme === 'dark';
+
+        html.classList.toggle('dark', isDark);
 
         Object.values(icons).forEach(icon => {
-            icon.classList.remove('opacity-100', 'scale-100');
-            icon.classList.add('opacity-0', 'scale-0');
+            icon?.classList.remove('opacity-100', 'scale-100');
+            icon?.classList.add('opacity-0', 'scale-0');
         });
 
-        if (animate) {
-            setTimeout(() => {
-                icons[theme].classList.remove('opacity-0', 'scale-0');
-                icons[theme].classList.add('opacity-100', 'scale-100');
-            }, 150);
-        } else {
-            icons[theme].classList.remove('opacity-0', 'scale-0');
-            icons[theme].classList.add('opacity-100', 'scale-100');
+        const currentIcon = icons[theme];
+        if (currentIcon) {
+            const applyIconChange = () => {
+                currentIcon.classList.remove('opacity-0', 'scale-0');
+                currentIcon.classList.add('opacity-100', 'scale-100');
+            };
+
+            animate ? setTimeout(applyIconChange, 150) : applyIconChange();
         }
 
-        tooltipText.textContent = labels[theme];
+        if (tooltipText) tooltipText.textContent = labels[theme];
         button.setAttribute('aria-label', `Theme: ${labels[theme]}`);
 
-        // Update Ghost comments color scheme by re-injecting the script with new data-color-scheme
+        // Update Ghost comments color scheme
         const commentsWrapper = document.getElementById('comments-wrapper');
         const commentsScript = document.querySelector('script[data-ghost-comments]');
         if (commentsWrapper && commentsScript) {
-            const isDark = html.classList.contains('dark');
             const newScript = document.createElement('script');
-            // Copy all attributes, override color scheme
             Array.from(commentsScript.attributes).forEach(attr => {
                 newScript.setAttribute(attr.name, attr.value);
             });
@@ -91,7 +92,6 @@ loadMore();
             applyTheme('system');
         }
     });
-
 })();
 
 // Web Share API - Native Share on Mobile
@@ -99,23 +99,18 @@ loadMore();
     const webShareButton = document.querySelector('[data-web-share]');
 
     if (webShareButton && navigator.share) {
-        // Show the native share button if Web Share API is supported
         webShareButton.classList.remove('hidden');
         webShareButton.classList.add('inline-flex');
 
-        webShareButton.addEventListener('click', async function () {
+        webShareButton.addEventListener('click', async function (e) {
+            e.preventDefault();
             const title = this.getAttribute('data-title');
             const text = this.getAttribute('data-text');
             const url = this.getAttribute('data-url');
 
             try {
-                await navigator.share({
-                    title: title,
-                    text: text,
-                    url: url
-                });
+                await navigator.share({ title, text, url });
             } catch (err) {
-                // User cancelled or error occurred
                 if (err.name !== 'AbortError') {
                     console.error('Error sharing:', err);
                 }
@@ -129,43 +124,35 @@ loadMore();
     const copyButtons = document.querySelectorAll('[data-share-copy]');
 
     copyButtons.forEach(button => {
-        button.addEventListener('click', async function () {
+        button.addEventListener('click', async function (e) {
+            e.preventDefault();
             const url = this.getAttribute('data-url');
             const textElement = this.querySelector('[data-share-copy-text]');
-            const originalText = textElement.textContent;
+            const originalText = textElement?.textContent || 'Link kopieren';
+
+            if (!textElement) return;
 
             try {
                 await navigator.clipboard.writeText(url);
                 textElement.textContent = 'Kopiert!';
-
-                setTimeout(() => {
-                    textElement.textContent = originalText;
-                }, 2000);
+                setTimeout(() => textElement.textContent = originalText, 2000);
             } catch (err) {
                 // Fallback for older browsers
                 const textArea = document.createElement('textarea');
                 textArea.value = url;
-                textArea.style.position = 'fixed';
-                textArea.style.left = '-999999px';
+                textArea.style.cssText = 'position:fixed;left:-999999px';
                 document.body.appendChild(textArea);
                 textArea.select();
 
                 try {
                     document.execCommand('copy');
                     textElement.textContent = 'Kopiert!';
-
-                    setTimeout(() => {
-                        textElement.textContent = originalText;
-                    }, 2000);
-                } catch (err) {
+                } catch {
                     textElement.textContent = 'Fehler!';
-
-                    setTimeout(() => {
-                        textElement.textContent = originalText;
-                    }, 2000);
+                } finally {
+                    setTimeout(() => textElement.textContent = originalText, 2000);
+                    document.body.removeChild(textArea);
                 }
-
-                document.body.removeChild(textArea);
             }
         });
     });
@@ -175,15 +162,17 @@ loadMore();
 (function () {
     function processExternalLinks() {
         const host = window.location.host;
-        document.querySelectorAll('.gh-content a[href]').forEach(link => {
+        const contentLinks = document.querySelectorAll('.gh-content a[href]');
+
+        contentLinks.forEach(link => {
             try {
-                const url = new URL(link.href);
+                const url = new URL(link.href, window.location.origin);
                 if (url.host && url.host !== host) {
                     link.setAttribute('target', '_blank');
                     link.setAttribute('rel', 'noopener noreferrer');
                 }
-            } catch (e) {
-                // ignore relative or invalid URLs
+            } catch {
+                // Ignore relative or invalid URLs
             }
         });
     }

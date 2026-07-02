@@ -16,7 +16,9 @@ export default function loadMore() {
             const html = await res.text();
             const parsed = new DOMParser().parseFromString(html, 'text/html');
 
-            parsed.querySelectorAll('.gh-postfeed article').forEach(post => {
+            // Get all post-card articles from the next page
+            const articles = parsed.querySelectorAll('.gh-postfeed article');
+            articles.forEach(post => {
                 feed.appendChild(post);
             });
 

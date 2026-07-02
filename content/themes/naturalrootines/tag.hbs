@@ -10,23 +10,26 @@
             {{img_url feature_image size="xl" }} 2000w"
             sizes="100vw"
             src="{{img_url feature_image size="l"}}"
-            alt="{{primary_tag.name}}"
+            alt="{{name}}"
             loading="eager"
             fetchpriority="high"
+            width="1200"
+            height="600"
         />
     </div>
 
-    <div class="max-w-5xl mx-auto px-8 py-12 text-center">
-        <h1 class="font-headline font-light text-3xl text-black leading-tight lg:text-5xl dark:text-white">
+    <div class="max-w-5xl mx-auto px-8 py-12 text-center" itemscope itemtype="https://schema.org/CollectionPage">
+        <h1 class="font-headline font-light text-3xl text-black leading-tight lg:text-5xl dark:text-white" itemprop="name">
             <span class="font-semibold">{{name}}</span>
         </h1>
-        <p class="mt-4 font-headline font-light text-xl text-neutral-800 lg:text-2xl dark:text-neutral-100">
+        <p class="mt-4 font-headline font-light text-xl text-neutral-800 lg:text-2xl dark:text-neutral-100" itemprop="description">
             {{#if description}}
                 {{description}}
             {{else}}
                 Eine Sammlung von {{plural ../pagination.total empty='Beiträgen' singular='% Beitrag' plural='% Beiträgen'}}
             {{/if}}
         </p>
+        <meta itemprop="url" content="{{url absolute="true"}}">
     </div>
 {{/tag}}
 
@@ -44,6 +47,24 @@
                 {{/foreach}}
             </div>
         </section>
+
+        {{!-- Related Tags for Topic Clustering --}}
+        {{#tag}}
+            {{#get "tags" limit="6" filter="slug:-{{slug}}" as |related_tags|}}
+                {{#if related_tags}}
+                    <section class="mt-16 pt-12 border-t border-neutral-200 dark:border-neutral-700">
+                        <h2 class="mb-6 font-headline font-semibold text-2xl text-black dark:text-white">Weitere Themen</h2>
+                        <div class="flex flex-wrap gap-3">
+                            {{#foreach related_tags}}
+                                <a href="{{url}}" class="px-4 py-2 rounded-full bg-neutral-100 font-semibold text-neutral-600 hover:bg-neutral-200 hover:text-neutral-800 transition ease duration-300 dark:bg-neutral-600 dark:text-neutral-100 active:scale-[.98]">
+                                    {{name}}
+                                </a>
+                            {{/foreach}}
+                        </div>
+                    </section>
+                {{/if}}
+            {{/get}}
+        {{/tag}}
     </div>
 </section>
 

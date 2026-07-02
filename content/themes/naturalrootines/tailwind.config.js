@@ -4,8 +4,14 @@ export default {
         './**/*.hbs',
         './assets/**/*.js',
     ],
-    theme: {},
+    theme: {
+        extend: {}
+    },
     plugins: [
         require('@tailwindcss/typography'),
     ],
+    // Performance optimizations for production
+    corePlugins: {
+        preflight: true,
+    },
 }
